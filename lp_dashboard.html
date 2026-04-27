@@ -459,7 +459,7 @@
         <div class="hero-cta-row">
           <a href="#action-plan" class="hero-cta primary">
             <span>View Action Plan</span>
-            <span class="hero-cta-badge">11</span>
+            <span class="hero-cta-badge">12</span>
             <span class="arrow">→</span>
           </a>
           <a href="#card-list" class="hero-cta secondary">
@@ -593,8 +593,10 @@
   <div class="plan-finding"><strong>10 pricing pages globally underperform.</strong> All HIGH priority, all fail the A1 Owner persona. 110k visitors → 465 paid (0.42%). No agency tier highlighting, no Semrush/Ahrefs ROI, no migration credit.</div>
   <div class="plan-finding"><strong>AI-feature pages leak conversions.</strong> ChatGPT 1.3% reg rate, Gemini 1.2%, Perplexity 1.3% — 5–10× lower than non-AI feature pages. Visitors want methodology proof; pages don't supply it.</div>
   <div class="plan-finding"><strong>"easy-to-use" PPC cluster is anti-upmarket.</strong> 13 pages, 91k visitors, 7,582 regs — but only 28 paid. Attracts users who churn. Strategically harmful positioning.</div>
-  <div class="plan-finding"><strong>API content is siloed.</strong> 22 technical/API pages exist but 27 high-traffic non-API pages flagged api=Yes barely link to them.</div>
+  <div class="plan-finding"><strong>API content is siloed — and treated as one cross-link.</strong> 22 technical/API pages exist but only ~10k visitors and 2 paid. Meanwhile API is the highest-LTV tier SE Ranking sells. The fix is not a single "Available via API" strip everywhere — it's <em>five different blocks for five different audiences</em> (pricing buyers, feature power users, top-funnel visitors, enterprise tech leads, developers). See G8.</div>
   <div class="plan-finding"><strong>Solution pages are ROI-thin.</strong> All 22 (Agency / SMB / Entrepreneur / Enterprise) read like feature lists, not business cases. Agency page: 6,941 visitors → 2 paid.</div>
+  <div class="plan-finding"><strong>Ecosystem cross-promotion is almost absent — and locale-misaligned.</strong> SE Ranking has two adjacent products: SE Visible (AI visibility tracker, $79–$284/mo, supports 5 languages: EN/FR/DE/NL/ES) and Planable (SMM). Only 11 pages cross-link Planable and 10 cross-link SE Visible, mostly duplicating each other on EN homepage and pricing. 52 of 63 pages where the full ecosystem story belongs (homepages, pricing, solution, competitor) currently mention <em>neither</em> product. Plus: SE Ranking ships in 10 locales, SE Visible in 5 — leaving PT/JP/UA/RU/IT visitors unable to receive a fully localized cross-promo. Strategic gap to flag with SE Visible product team.</div>
+  <div class="plan-finding"><strong>Two persona/vertical gaps in the page tree.</strong> The portfolio has zero industry-specific landing pages (E-commerce, SaaS, Local, Real estate, Hospitality — competitors like Semrush have these), and no CMO / Digital Marketer persona page despite SE Visible explicitly targeting that audience. See section "Pages to create" — N1 and N2 are the must-have gaps; competitor-specific migration pages are flagged as a "evaluate" decision pending SEO query-volume data.</div>
 
   <!-- Roadmap -->
   <div class="plan-h3">2 · 90-day roadmap</div>
@@ -626,7 +628,7 @@
   </div>
 
   <!-- Bulk-action groups -->
-  <div class="plan-h3">3 · Bulk-action groups (G1–G11)</div>
+  <div class="plan-h3">3 · Bulk-action groups (G1–G12)</div>
   <div class="plan-groups">
 
     <!-- G1 -->
@@ -670,8 +672,8 @@
       </div>
       <div class="plan-meta"><span>10 pages</span><span>110k visitors / mo</span><span>0.42% paid</span></div>
       <div class="plan-row"><span class="lbl">Why it matters</span>All 10 fail A1 Owner persona — tiers framed as feature checklists, not buyer roles. No agency tier badge, no Semrush/Ahrefs ROI, no migration credit. Pricing is where comparison battles are won or lost.</div>
-      <div class="plan-row"><span class="lbl">Recommended action</span>Re-anchor tiers as personas (Solo / Teams / Agencies / Enterprise); add "Most popular for Agencies" badge; add Semrush/Ahrefs side-by-side ROI row; add "Switch &amp; save — free migration + 30-day credit"; add "Talk to sales" CTA on tiers ≥ $200/mo; localize currency + VAT.</div>
-      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;PricingTemplate tiers={[solo,teams,agencies,enterprise]} comparisonSrc="semrush" migrationIncentive salesCTAThreshold={200} /&gt;</span></div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Re-anchor tiers as personas (Solo / Teams / Agencies / Enterprise); add "Most popular for Agencies" badge; add Semrush/Ahrefs side-by-side ROI row; add "Switch &amp; save — free migration + 30-day credit"; add "Talk to sales" CTA on tiers ≥ $200/mo; localize currency + VAT. <strong>The pricing template also hosts two coordinated cross-product blocks:</strong> the API tier matrix row (G8 · Bucket A) and the SE Visible bundle row (G12 · Bucket A*, "Add SE Visible from $79/mo") — all three changes ship in the same template overhaul.</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;PricingTemplate tiers={[solo,teams,agencies,enterprise]} comparisonSrc="semrush" migrationIncentive salesCTAThreshold={200} apiMatrixRow seVisibleBundleRow={priceFrom:"$79"} /&gt;</span></div>
       <div class="plan-row"><span class="lbl">Expected impact</span>0.42% → 0.65% paid rate on 110k visitors = ~+300 paid subs/month across all locales.</div>
       <details class="plan-pages"><summary>All affected pages</summary><ul>
         <li><code>/subscription.html</code> — 76,655 visitors · 358 paid (EN)</li>
@@ -814,19 +816,114 @@
     </div>
 
     <!-- G8 -->
-    <div class="plan-group medium">
+    <div class="plan-group high" style="grid-column: 1 / -1;">
       <div class="plan-group-head">
         <div>
-          <div class="plan-group-id">G8 · API cross-linking</div>
-          <div class="plan-group-title">Surface API value on 27 high-traffic non-API pages</div>
+          <div class="plan-group-id">G8 · API surfacing — five contexts, five blocks</div>
+          <div class="plan-group-title">Stop treating API as one cross-link — surface it differently for pricing buyers, feature-power users, top-funnel visitors, enterprise tech leads, and developers</div>
         </div>
-        <span class="plan-pill medium">Medium</span>
+        <span class="plan-pill high">High</span>
       </div>
-      <div class="plan-meta"><span>27 source pages</span><span>22 API pages</span><span>Internal linking project</span></div>
-      <div class="plan-row"><span class="lbl">Why it matters</span>22 API pages exist but receive modest traffic (/api.html: 9,603 visitors → 2 paid). Meanwhile 27 non-API pages flagged api=Yes have API-relevant content but barely link to API docs. Internal linking + block insertion problem, not new pages.</div>
-      <div class="plan-row"><span class="lbl">Recommended action</span>Build "Available via API" inline component, embed on all 27 api=Yes pages. Restructure /api.html: 3-tab code samples (cURL/Python/JS) above the fold + API credits/pricing per tier + "Switching from DataForSEO/Semrush API?" comparison + "Get API key" CTA. Localize core API pages (ES, FR, DE, JP, RU thin).</div>
-      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;AvailableViaAPI endpoint codeSample /&gt; on feature pages + &lt;APIHeroV2 codeTabs pricingTable /&gt; on /api.html</span></div>
-      <div class="plan-row"><span class="lbl">Expected impact</span>Cross-linking expected to multiply qualified API-intent traffic by 3–5×, expanding API-tier sales (typically the highest-LTV tier). See Section 4 for the dedicated page list.</div>
+      <div class="plan-meta"><span>5 distinct blocks</span><span>~67 source pages</span><span>+ /api.html restructure</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>API tier is typically the highest-LTV plan SE Ranking sells, but API content is currently siloed: <code>/api.html</code> gets 9,603 visitors → 2 paid, while ~67 high-intent pages mention nothing about API. Previous "add an API strip everywhere" approaches underperform because <em>API is a different sale to different audiences</em>. A pricing visitor wants to know "is API in my tier?" — a competitor-page visitor wants "do you have parity with DataForSEO?" — a developer wants runnable code. One block doesn't solve all five cases.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Build five distinct API-surfacing blocks and apply each to its right context. Treat them as a coordinated rollout — they all reinforce the same "SE Ranking has serious API" story but through the right entry point for each persona.</div>
+      <div class="plan-row block-row"><span class="lbl">Five blocks to ship</span><span class="val">&lt;APITierMatrix /&gt; · &lt;FeatureAPISnippet endpoint /&gt; · &lt;TopFunnelAPIStrip /&gt; · &lt;EnterpriseAPIBlock sso sla /&gt; · &lt;APIHeroV2 codeTabs comparison /&gt;</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Multiplies qualified API-intent traffic by 3–5× (current /api.html: ~10k/mo; this funnels another ~30k+ from high-intent surfaces). API tier is highest-LTV — even small absolute lifts compound into meaningful ARR.</div>
+
+      <!-- Bucket A: Pricing pages -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">A · Pricing pages — "API access per tier" matrix row · 10 pages, 105k visitors</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        Audience: A1 Owner comparing tiers and asking "does my plan include API?" The answer should be visible <em>in</em> the comparison matrix, not on a separate page. Block: a row in the existing tier-comparison table showing API credits / requests-per-month per tier, plus a "Talk to API sales" CTA at the highest tier.
+        </span>
+      </div>
+      <details class="plan-pages"><summary>All 10 pricing pages</summary><ul>
+        <li><code>/subscription.html</code> — 76,655 (EN, 358 paid)</li>
+        <li><code>/de/subscription.html</code> — 7,190 · <code>/es/subscription.html</code> — 7,177 · <code>/fr/subscription.html</code> — 6,790</li>
+        <li><code>/nl/subscription.html</code> — 2,370 · <code>/pt/subscription.html</code> — 1,528 · <code>/ru/podpiska.html</code> — 1,249</li>
+        <li><code>/ua/subscription.html</code> — 892 · <code>/jp/subscription.html</code> — 890 · <code>/it/subscription.html</code> — 808</li>
+        <li><em>Block fits inside the G2 pricing template overhaul — same template change, two outcomes.</em></li>
+      </ul></details>
+
+      <!-- Bucket B: Feature pages with api=Yes -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">B · Feature pages with API endpoints — code-snippet box · 6 pages, 61k visitors</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        Audience: A3 SEO Pro / power user reading about a specific feature (backlinks, position tracking, keyword research) — for whom "this is also available via API" is a natural extension. Block: an inline code-snippet box with a 5-line cURL/Python example for the matching endpoint and a deep link to the dedicated API doc page.
+        </span>
+      </div>
+      <details class="plan-pages"><summary>6 feature pages flagged api=Yes</summary><ul>
+        <li><code>/backlink-checker.html</code> — 31,911 → link to <code>/backlinks-api.html</code></li>
+        <li><code>/position-tracking.html</code> — 12,560 → link to position-tracking endpoint</li>
+        <li><code>/de/ranking-check.html</code> — 6,085 (DE)</li>
+        <li><code>/de/keyword-recherche.html</code> — 4,177 → link to <code>/de/keyword-recherche-api.html</code></li>
+        <li><code>/fr/keyword-suggestion-tool.html</code> — 3,789</li>
+        <li><code>/es/position-tracking.html</code> — 2,842</li>
+      </ul></details>
+
+      <!-- Bucket C: Homepages -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">C · Homepages — top-funnel "Available via API" mention · 10 pages, 405k visitors</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        Audience: mixed (A1 + A2 + A3) on top-funnel surface. Block: a one-line strip in the features section — "Everything in SE Ranking is also available via API — build dashboards, reports, integrations." Links to <code>/api.html</code>. Doesn't crowd the hero; positioned mid-page near feature highlights.
+        </span>
+      </div>
+      <details class="plan-pages"><summary>All 10 homepages</summary><ul>
+        <li><code>/</code> — 309,852 visitors (EN, the flagship)</li>
+        <li><code>/es/</code> — 27,704 · <code>/fr/</code> — 20,195 · <code>/de/</code> — 13,766 · <code>/ru/</code> — 8,192</li>
+        <li><code>/nl/</code> — 7,736 · <code>/pt/</code> — 6,023 · <code>/jp/</code> — 4,306 · <code>/ua/</code> — 3,899 · <code>/it/</code> — 3,879</li>
+      </ul></details>
+
+      <!-- Bucket D: Enterprise + Agency -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">D · Enterprise + Agency solution pages — "API for tech teams" block · ~14 pages, 12k visitors</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        Audience: A1 Owner / VP-level buyer making a serious purchase decision. For Enterprise specifically, API is non-negotiable — security, automation, BI integration are buying criteria. Block: a dedicated "API for tech teams" section listing SSO/SAML for API access, audit logs, rate limits, dedicated tech support, and an "Architecture review" CTA. On Agency pages, frame as "automate client reporting via API."
+        </span>
+      </div>
+      <details class="plan-pages"><summary>Top solution pages</summary><ul>
+        <li><strong>Enterprise (priority — API is a buying criterion):</strong> <code>/se-ranking-for-enterprises.html</code> (1,317) · <code>/de/se-ranking-for-enterprises.html</code> (99) · <code>/nl/se-ranking-for-enterprises.html</code> (78) · <code>/jp/se-ranking-for-enterprises.html</code> (57) · <code>/it/se-ranking-for-enterprises.html</code> (40) · <code>/ua/se-ranking-for-enterprises.html</code> (33)</li>
+        <li><strong>Agency (frame as automation):</strong> <code>/se-ranking-for-agencies.html</code> (6,941) + 7 localized variants (NL, IT, PT, JP, UA, RU, ES, etc.)</li>
+        <li><em>SMB / Entrepreneur solution pages get the lighter Bucket C-style mention instead — the full Enterprise API block is overkill for that audience.</em></li>
+      </ul></details>
+
+      <!-- Bucket E: Competitor pages -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">E · Competitor pages — "API parity vs DataForSEO/Semrush API" block · 21 pages, 23.8k visitors</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        Audience: visitors actively shopping for an alternative — many of whom evaluate API capability as part of the migration check. Block: a feature-comparison row showing endpoint coverage, rate limits, and pricing per request vs DataForSEO and Semrush API. Strongest on Semrush/Ahrefs/Sistrix alternative pages.
+        </span>
+      </div>
+      <details class="plan-pages"><summary>Top competitor pages</summary><ul>
+        <li><code>/worthy-semrush-alternative.html</code> — 13,082 (highest leverage — Semrush API is a paid product, parity is the differentiator)</li>
+        <li><code>/es/worthy-semrush-alternative.html</code> — 2,381 · <code>/nl/competitors.html</code> — 2,269 · <code>/competitors.html</code> — 1,300</li>
+        <li><code>/ac/worthy-semrush-alternative.html</code> — 1,281 · <code>/worthy-ahrefs-alternative.html</code> — 628</li>
+        <li><code>/de/worthy-seobility-alternative.html</code> — 483 · <code>/fr/worthy-ahrefs-alternative.html</code> — 472</li>
+        <li><em>+ 13 more localized competitor variants (DE, FR, ES, IT, JP, UA, PT)</em></li>
+      </ul></details>
+
+      <!-- Bucket F: API pages themselves -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">F · The API pages themselves — full restructure · 22 pages, 20.6k visitors</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        Audience: developers and tech-decision-makers actively evaluating the API. Today these pages lead with marketing prose. Block: 3-tab code samples (cURL/Python/JS) above the fold + endpoint catalog with sample responses + API credits/pricing-per-tier table + "Switching from DataForSEO/Semrush API?" comparison + Postman collection + "Get API key" self-serve CTA. Localize ES/FR/DE/JP/RU API pages — they are currently thin vs EN.
+        </span>
+      </div>
+      <details class="plan-pages"><summary>All 22 API pages</summary><ul>
+        <li><strong>Hub:</strong> <code>/api.html</code> — 9,603 (highest priority restructure)</li>
+        <li><strong>Sub-pages:</strong> <code>/api/integrations/mcp/</code> — 2,162 · <code>/api/data/getting-started/</code> — 2,010 · <code>/api/how-to-get-api/</code> — 1,170 · <code>/api/data/keyword-research/</code> — 879 · <code>/api/data/backlinks/</code> — 796 · <code>/api/project/search-volume/</code> — 130</li>
+        <li><strong>Endpoint pages:</strong> <code>/keyword-research-api.html</code> — 1,402 · <code>/backlinks-api.html</code> — 556 · <code>/domain-analysis-api.html</code> — 385</li>
+        <li><strong>Localized (currently thin — needs full mirror of EN):</strong> <code>/es/api.html</code> (414) · <code>/fr/api.html</code> (409) · <code>/de/api.html</code> (345) · <code>/ru/api.html</code> (122) · <code>/jp/api.html</code> (88) · <code>/nl/api.html</code> (32)</li>
+        <li><strong>Localized endpoints:</strong> <code>/de/keyword-recherche-api.html</code> · <code>/de/backlinks-api.html</code> · <code>/de/domain-analyse-api.html</code> · <code>/ru/api-beginning-of-work.html</code> · <code>/ru/api-proverka-chastotnosti.html</code> · <code>/jp/api-beginning-of-work.html</code></li>
+      </ul></details>
+
+      <!-- Skip explicitly -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--muted); font-size: 12px;">Skip · No API surface needed</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--muted); line-height:1.55;">
+        15 Promo / "easy-to-use" pages (PPC LPs — API distracts from the conversion focus); 10 Free tool pages (visitor came for a single-shot tool, API is the wrong upsell — G10 covers their right upsell rail); 20 AI feature pages (already saturated with AI methodology — pile-on dilutes); SMB / Entrepreneur solution pages (audience is non-technical; Bucket C homepage-style mention is enough).
+        </span>
+      </div>
     </div>
 
     <!-- G9 -->
@@ -881,48 +978,254 @@
       <div class="plan-row"><span class="lbl">Expected impact</span>Many localized pages already have strong reg rates despite thinness (PT 18.9%, ES 22.5%). Bringing the thin middle (DE, JP, IT, NL) to parity disproportionately improves paid conversion.</div>
     </div>
 
+    <!-- G12 -->
+    <div class="plan-group high" style="grid-column: 1 / -1;">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G12 · Ecosystem cross-promotion</div>
+          <div class="plan-group-title">Surface SE Visible (AI visibility tracker, $79–$284/mo) and Planable (SMM) on the right SE Ranking pages — three different blocks for three different audiences, with locale-aware coverage</div>
+        </div>
+        <span class="plan-pill high">High</span>
+      </div>
+      <div class="plan-meta"><span>3 blocks</span><span>~194 pages total</span><span>5 SE Visible locales</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>SE Ranking, SE Visible, and Planable cover three layers of the same buyer's marketing stack — search, AI/brand visibility, and social. SE Visible's own positioning ("Get AI visibility data you can act on") explicitly targets <strong>Business Owners · Agencies · CMOs/Digital Marketers</strong> — the same A1+A2 audience SE Ranking serves on its homepages, pricing, solution and competitor pages. The 901k monthly SE Ranking visitors are the cheapest possible source of awareness for the other two products. But surfacing must match the page's audience and the host page's locale: SE Visible only ships in 5 languages (EN, FR, DE, NL, ES), while SE Ranking has 10. Today only 11 pages cross-link Planable and only 10 cross-link SE Visible — almost all duplicate each other on EN homepage and pricing.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Build three distinct cross-promo components and apply each to its correct audience cluster — with locale-aware logic for SE Visible (only on EN/FR/DE/NL/ES surfaces; defer the other 5 locales until SE Visible expands coverage). Use SE Visible's actual messaging from its own site, not generic AI-search prose. Don't put one universal block on everything — mismatched cross-promo damages conversion on the host page.</div>
+      <div class="plan-row block-row"><span class="lbl">Blocks to add (3)</span><span class="val">&lt;EcosystemStrip products={[seranking, sevisible, planable]} locale="en|fr|de|nl|es" /&gt;<br/>&lt;SEVisibleCrossPromo locale="en|fr|de|nl|es" message="Track your brand in ChatGPT, Gemini, Perplexity" /&gt;<br/>&lt;SEVisibleBundleRow priceFrom="$79/mo" /&gt; — for pricing pages</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Surfacing existing products to existing traffic is the highest-margin growth channel available. Realistic 3–5% click-through on competitor + agency pages = ~3,000 monthly cross-product page views. The bundle row on pricing pages (with concrete $79/mo price) is the highest-leverage placement — turns SE Visible from "another product" into a $79 add-on at point-of-purchase.</div>
+
+      <!-- Bucket A: Ecosystem -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">A · Ecosystem block (all 3 products) — 53 pages with full SE Visible coverage + 10 with limited</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        Where the audience is multi-channel — owners, agency leads, CMOs comparing full marketing stacks. Use SE Visible's actual concrete proof: <strong>"Track your brand in ChatGPT, Gemini, AI Overviews, AI Mode, Perplexity. Monitor sentiment. Benchmark competitors."</strong> + <strong>"100M+ AI answers analyzed monthly"</strong>. On Agency pages add: "Manage AI visibility for multiple clients in one platform — unlimited users." On Competitor pages add: "Semrush doesn't track AI search visibility. SE Visible does — across 5 AI platforms."
+        </span>
+      </div>
+      <details class="plan-pages"><summary>Locale-aware breakdown</summary><ul>
+        <li><strong>✅ Full ecosystem block (5 SE Visible locales — 53 pages):</strong>
+          <ul style="margin-top:4px; padding-left:18px;">
+            <li>5 Homepages: <code>/</code> · <code>/es/</code> · <code>/fr/</code> · <code>/de/</code> · <code>/nl/</code> — combined 379k visitors</li>
+            <li>5 Pricing pages (EN/ES/FR/DE/NL): combined ~99k visitors</li>
+            <li>~10 Solution pages (EN + ES/FR/DE/NL agency, SMB, enterprise variants)</li>
+            <li>~10 Competitor pages (EN + ES/FR/DE/NL Semrush/Ahrefs alternatives)</li>
+          </ul>
+        </li>
+        <li><strong>⚠️ SE Ranking + Planable only, SE Visible deferred (5 locales — 10+ pages):</strong> <code>/pt/</code> · <code>/jp/</code> · <code>/ua/</code> · <code>/ru/</code> · <code>/it/</code> + their pricing/solution/competitor variants. SE Visible doesn't yet support PT/JP/UA/RU/IT languages or these regions. Two options: (1) skip SE Visible mention entirely; (2) add small "Coming soon to your region" placeholder linking to EN <code>/visible.seranking.com</code>. Decide with SE Visible product team.</li>
+        <li><strong>Strongest differentiator on competitor pages:</strong> Semrush has no AI visibility product, no SMM product. Ahrefs has no AI visibility, no SMM. SE Ranking + SE Visible + Planable = unique three-product stack — call it out explicitly on every competitor page.</li>
+      </ul></details>
+
+      <!-- Bucket A1: Pricing bundle row (special — moves cross-promo from soft to commercial) -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">A* · Pricing-page bundle row — concrete $79/mo add-on · 5 pages</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        Special case inside Bucket A. Because SE Visible has clear public pricing (Basic $79/mo, Core $151/mo, Plus $284/mo), the pricing-page block can be commercial, not just informational: <strong>"Add SE Visible — AI visibility tracking from $79/mo. Track 3 brands in ChatGPT, Gemini, Perplexity. [Add to plan →]"</strong>. This is the highest-leverage cross-sell placement in the entire site — buyers are already deciding what to pay. Coordinates with G2 (pricing overhaul) — same template change. Apply to 5 SE-Visible-supported pricing pages: <code>/subscription.html</code> · <code>/es/subscription.html</code> · <code>/fr/subscription.html</code> · <code>/de/subscription.html</code> · <code>/nl/subscription.html</code>. Other 5 (PT/JP/UA/RU/IT pricing) get the soft "products in our ecosystem" mention instead, no commercial offer.
+        </span>
+      </div>
+
+      <!-- Bucket B: SE Visible only on SEO feature pages -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">B · SE Visible only (no Planable) — ~85 SEO feature pages, ~265k visitors</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        Where the audience is A3 SEO Pro thinking about search visibility — but SMM is irrelevant. SE Visible doesn't position SEO Pros as a primary persona, so use a softer message than on solution/competitor pages: <strong>"AI search is changing how brands are found. Monitor your visibility across ChatGPT, Gemini, Perplexity →"</strong>. Apply only on EN/FR/DE/NL/ES localized variants — skip on PT/JP/UA/RU/IT versions until SE Visible supports those locales.
+        </span>
+      </div>
+      <details class="plan-pages"><summary>Top SE-Visible-only pages by traffic</summary><ul>
+        <li><strong>EN SEO feature pages:</strong> <code>/backlink-checker.html</code> (32k) · <code>/competitor-traffic-research.html</code> (13k) · <code>/position-tracking.html</code> (12.5k) · <code>/features.html</code> (8k) · <code>/on-page-checker.html</code> (7k) · <code>/serp-tracking.html</code> (3.8k) + the rest of EN feature pages</li>
+        <li><strong>EN/FR/DE/NL/ES localized variants of feature pages:</strong> apply where SE Visible supports the locale</li>
+        <li><strong>10 Free tool pages</strong> (only the 5 in supported locales): <code>/google-ranking-checker.html</code> (10k) · <code>/seo-checker.html</code> (3k) · <code>/es/website-traffic-check.html</code> · <code>/fr/seo-checker.html</code> · <code>/nl/seo-checker.html</code></li>
+        <li><strong>~26 Promo / "easy-to-use" pages</strong> — apply only after G9 reframe; SE Visible mention reinforces the outcome-led repositioning ("Powerful SEO + AI visibility, without the Semrush learning curve")</li>
+        <li><em>SMM (Planable) deliberately excluded here</em> — A3 SEO Pro audience does not buy social tools, and a Planable mention on a backlink-checker page degrades the conversion focus of the host page.</li>
+        <li><em>PT/JP/UA/RU/IT feature pages skipped</em> — SE Visible doesn't support those locales yet.</li>
+      </ul></details>
+
+      <!-- Bucket C: Planable only -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--accent-strong); font-size: 12px;">C · Planable only — 0 standalone pages</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        There is no standalone "Planable-only" surface in the SE Ranking page tree. Planable always rides inside the ecosystem block (Bucket A) — it is not surfaced on SEO-Pro feature pages because SMM is the wrong audience there. Net: <strong>0 pages need a Planable-only block</strong>.
+        </span>
+      </div>
+
+      <!-- Skip -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--muted); font-size: 12px;">D · Skip entirely (42 pages)</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--muted); line-height:1.55;">
+        20 AI feature pages already are SE Visible (no need to cross-link to itself); 22 Technical/API pages have a developer audience that needs code samples, not cross-product marketing. Skip both buckets.
+        </span>
+      </div>
+
+      <!-- Locale gap callout -->
+      <div class="plan-row" style="margin-top:14px;"><span class="lbl" style="color: var(--warm); font-size: 12px;">⚠ Strategic gap to flag with SE Visible team</span></div>
+      <div class="plan-row" style="margin-top:-6px;">
+        <span style="font-size:12.5px; color:var(--ink); line-height:1.55;">
+        SE Ranking ships in 10 locales, SE Visible in 5. The mismatch leaves 5 locales (PT, JP, UA, RU, IT — combined ~26k monthly homepage visitors) unable to receive a fully localized cross-promo. This is a product-team conversation, not a content-team one. <strong>Recommend: align SE Visible localization roadmap with SE Ranking's top non-EN markets — IT and PT are the next obvious candidates given existing SE Ranking traction.</strong>
+        </span>
+      </div>
+    </div>
+
   </div>
 
   <!-- API expansion -->
-  <div class="plan-h3">4 · API content expansion — dedicated page list</div>
-  <p class="plan-lede" style="margin-bottom:10px;">Pages flagged <code>api=Yes</code> in the audit but currently lacking visible API content. Each receives an "Available via API" block + link to relevant API endpoint page. Ordered by traffic.</p>
+  <div class="plan-h3">4 · API surfacing — flat reference list (G8 quick lookup)</div>
+  <p class="plan-lede" style="margin-bottom:10px;">Flat list of all pages flagged <code>api=Yes</code> in the audit, ordered by traffic. Use this as a checklist while implementing G8 — each row is mapped to its bucket (A pricing, B feature snippet, C homepage strip, D enterprise, E competitor). Strategy and rationale: see G8 above.</p>
   <div class="plan-table-wrap">
     <table class="plan-table">
-      <thead><tr><th>URL / Slug</th><th>Page type</th><th>Locale</th><th class="num">Visitors / mo</th><th>Recommended block</th></tr></thead>
+      <thead><tr><th>URL / Slug</th><th>Bucket</th><th>Page type</th><th>Locale</th><th class="num">Visitors / mo</th><th>Block to add</th></tr></thead>
       <tbody>
-        <tr><td><code>/</code></td><td>Homepage</td><td>EN</td><td class="num">309,852</td><td>"Also available via API" strip → /api.html</td></tr>
-        <tr><td><code>/subscription.html</code></td><td>Pricing</td><td>EN</td><td class="num">76,655</td><td>"API access per tier" row in comparison</td></tr>
-        <tr><td><code>/backlink-checker.html</code></td><td>Feature</td><td>EN</td><td class="num">31,911</td><td>Code snippet → /backlinks-api.html</td></tr>
-        <tr><td><code>/es/</code></td><td>Homepage</td><td>ES</td><td class="num">27,704</td><td>API strip → /es/api.html</td></tr>
-        <tr><td><code>/fr/</code></td><td>Homepage</td><td>FR</td><td class="num">20,195</td><td>API strip → /fr/api.html</td></tr>
-        <tr><td><code>/de/</code></td><td>Homepage</td><td>DE</td><td class="num">13,766</td><td>API strip → /de/api.html</td></tr>
-        <tr><td><code>/position-tracking.html</code></td><td>Feature</td><td>EN</td><td class="num">12,560</td><td>"Programmatic rank tracking — API" block</td></tr>
-        <tr><td><code>/google-ranking-checker.html</code></td><td>Free tool</td><td>EN</td><td class="num">10,035</td><td>"Automate this at scale — API" block</td></tr>
-        <tr><td><code>/ru/</code></td><td>Homepage</td><td>RU</td><td class="num">8,192</td><td>API strip → /ru/api.html</td></tr>
-        <tr><td><code>/nl/</code></td><td>Homepage</td><td>NL</td><td class="num">7,736</td><td>API strip → /nl/api.html (new)</td></tr>
-        <tr><td><code>/de/subscription.html</code></td><td>Pricing</td><td>DE</td><td class="num">7,190</td><td>"API access per tier" row (localized)</td></tr>
-        <tr><td><code>/es/subscription.html</code></td><td>Pricing</td><td>ES</td><td class="num">7,177</td><td>"API access per tier" row (localized)</td></tr>
-        <tr><td><code>/fr/subscription.html</code></td><td>Pricing</td><td>FR</td><td class="num">6,790</td><td>"API access per tier" row (localized)</td></tr>
-        <tr><td><code>/de/ranking-check.html</code></td><td>Feature</td><td>DE</td><td class="num">6,085</td><td>Localized API code snippet block</td></tr>
-        <tr><td><code>/pt/</code></td><td>Homepage</td><td>PT</td><td class="num">6,023</td><td>API strip + localize /pt/api.html (new)</td></tr>
-        <tr><td><code>/jp/</code></td><td>Homepage</td><td>JP</td><td class="num">4,306</td><td>API strip → /jp/api.html</td></tr>
-        <tr><td><code>/de/keyword-recherche.html</code></td><td>Feature</td><td>DE</td><td class="num">4,177</td><td>Link to /de/keyword-recherche-api.html</td></tr>
-        <tr><td><code>/ua/</code></td><td>Homepage</td><td>UA</td><td class="num">3,899</td><td>API strip + localize API page (new)</td></tr>
-        <tr><td><code>/it/</code></td><td>Homepage</td><td>IT</td><td class="num">3,879</td><td>API strip + localize /it/api.html (new)</td></tr>
-        <tr><td><code>/fr/keyword-suggestion-tool.html</code></td><td>Feature</td><td>FR</td><td class="num">3,789</td><td>Localized API code snippet block</td></tr>
-        <tr><td><code>/es/position-tracking.html</code></td><td>Feature</td><td>ES</td><td class="num">2,842</td><td>Localized API snippet block</td></tr>
-        <tr><td><code>/nl/subscription.html</code></td><td>Pricing</td><td>NL</td><td class="num">2,370</td><td>"API access per tier" row (localized)</td></tr>
-        <tr><td><code>/pt/subscription.html</code></td><td>Pricing</td><td>PT</td><td class="num">1,528</td><td>"API access per tier" row (localized)</td></tr>
-        <tr><td><code>/ru/podpiska.html</code></td><td>Pricing</td><td>RU</td><td class="num">1,249</td><td>"API access per tier" row (localized)</td></tr>
-        <tr><td><code>/ua/subscription.html</code></td><td>Pricing</td><td>UA</td><td class="num">892</td><td>"API access per tier" row (localized)</td></tr>
-        <tr><td><code>/jp/subscription.html</code></td><td>Pricing</td><td>JP</td><td class="num">890</td><td>"API access per tier" row (localized)</td></tr>
-        <tr><td><code>/it/subscription.html</code></td><td>Pricing</td><td>IT</td><td class="num">808</td><td>"API access per tier" row (localized)</td></tr>
+        <tr><td><code>/</code></td><td>C</td><td>Homepage</td><td>EN</td><td class="num">309,852</td><td>"Available via API" strip → <code>/api.html</code></td></tr>
+        <tr><td><code>/subscription.html</code></td><td>A</td><td>Pricing</td><td>EN</td><td class="num">76,655</td><td>"API access per tier" matrix row + sales CTA</td></tr>
+        <tr><td><code>/backlink-checker.html</code></td><td>B</td><td>Feature</td><td>EN</td><td class="num">31,911</td><td>Code snippet box → <code>/backlinks-api.html</code></td></tr>
+        <tr><td><code>/es/</code></td><td>C</td><td>Homepage</td><td>ES</td><td class="num">27,704</td><td>API strip → <code>/es/api.html</code></td></tr>
+        <tr><td><code>/fr/</code></td><td>C</td><td>Homepage</td><td>FR</td><td class="num">20,195</td><td>API strip → <code>/fr/api.html</code></td></tr>
+        <tr><td><code>/de/</code></td><td>C</td><td>Homepage</td><td>DE</td><td class="num">13,766</td><td>API strip → <code>/de/api.html</code></td></tr>
+        <tr><td><code>/worthy-semrush-alternative.html</code></td><td>E</td><td>Competitor</td><td>EN</td><td class="num">13,082</td><td>"API parity vs Semrush API" comparison row</td></tr>
+        <tr><td><code>/position-tracking.html</code></td><td>B</td><td>Feature</td><td>EN</td><td class="num">12,560</td><td>Code snippet box → position-tracking endpoint</td></tr>
+        <tr><td><code>/api.html</code></td><td>F</td><td>API hub</td><td>EN</td><td class="num">9,603</td><td>Full restructure: code tabs + endpoint catalog + tier pricing + comparison</td></tr>
+        <tr><td><code>/ru/</code></td><td>C</td><td>Homepage</td><td>RU</td><td class="num">8,192</td><td>API strip → <code>/ru/api.html</code></td></tr>
+        <tr><td><code>/nl/</code></td><td>C</td><td>Homepage</td><td>NL</td><td class="num">7,736</td><td>API strip → <code>/nl/api.html</code> (currently very thin)</td></tr>
+        <tr><td><code>/de/subscription.html</code></td><td>A</td><td>Pricing</td><td>DE</td><td class="num">7,190</td><td>"API access per tier" matrix row (localized)</td></tr>
+        <tr><td><code>/es/subscription.html</code></td><td>A</td><td>Pricing</td><td>ES</td><td class="num">7,177</td><td>"API access per tier" matrix row (localized)</td></tr>
+        <tr><td><code>/se-ranking-for-agencies.html</code></td><td>D</td><td>Solution (Agency)</td><td>EN</td><td class="num">6,941</td><td>"Automate client reporting via API" block</td></tr>
+        <tr><td><code>/fr/subscription.html</code></td><td>A</td><td>Pricing</td><td>FR</td><td class="num">6,790</td><td>"API access per tier" matrix row (localized)</td></tr>
+        <tr><td><code>/de/ranking-check.html</code></td><td>B</td><td>Feature</td><td>DE</td><td class="num">6,085</td><td>Localized API code snippet block</td></tr>
+        <tr><td><code>/pt/</code></td><td>C</td><td>Homepage</td><td>PT</td><td class="num">6,023</td><td>API strip + localize <code>/pt/api.html</code> (new)</td></tr>
+        <tr><td><code>/jp/</code></td><td>C</td><td>Homepage</td><td>JP</td><td class="num">4,306</td><td>API strip → <code>/jp/api.html</code></td></tr>
+        <tr><td><code>/de/keyword-recherche.html</code></td><td>B</td><td>Feature</td><td>DE</td><td class="num">4,177</td><td>Link to <code>/de/keyword-recherche-api.html</code></td></tr>
+        <tr><td><code>/ua/</code></td><td>C</td><td>Homepage</td><td>UA</td><td class="num">3,899</td><td>API strip + localize API page (new)</td></tr>
+        <tr><td><code>/it/</code></td><td>C</td><td>Homepage</td><td>IT</td><td class="num">3,879</td><td>API strip + localize <code>/it/api.html</code> (new)</td></tr>
+        <tr><td><code>/fr/keyword-suggestion-tool.html</code></td><td>B</td><td>Feature</td><td>FR</td><td class="num">3,789</td><td>Localized API code snippet block</td></tr>
+        <tr><td><code>/es/position-tracking.html</code></td><td>B</td><td>Feature</td><td>ES</td><td class="num">2,842</td><td>Localized API snippet block</td></tr>
+        <tr><td><code>/nl/subscription.html</code></td><td>A</td><td>Pricing</td><td>NL</td><td class="num">2,370</td><td>"API access per tier" matrix row (localized)</td></tr>
+        <tr><td><code>/es/worthy-semrush-alternative.html</code></td><td>E</td><td>Competitor</td><td>ES</td><td class="num">2,381</td><td>"API parity vs Semrush API" comparison row (localized)</td></tr>
+        <tr><td><code>/nl/competitors.html</code></td><td>E</td><td>Competitor</td><td>NL</td><td class="num">2,269</td><td>"API parity vs competitor API" comparison row</td></tr>
+        <tr><td><code>/api/integrations/mcp/</code></td><td>F</td><td>API sub-page</td><td>EN</td><td class="num">2,162</td><td>Add code samples + MCP-specific use cases</td></tr>
+        <tr><td><code>/api/data/getting-started/</code></td><td>F</td><td>API sub-page</td><td>EN</td><td class="num">2,010</td><td>Add 5-min quickstart + Postman collection</td></tr>
+        <tr><td><code>/se-ranking-for-entrepreneurs.html</code></td><td>D</td><td>Solution</td><td>EN</td><td class="num">1,879</td><td>Light Bucket-C-style "Available via API" mention</td></tr>
+        <tr><td><code>/se-ranking-for-smbs.html</code></td><td>D</td><td>Solution (SMB)</td><td>EN</td><td class="num">1,853</td><td>Light Bucket-C-style "Available via API" mention</td></tr>
+        <tr><td><code>/pt/subscription.html</code></td><td>A</td><td>Pricing</td><td>PT</td><td class="num">1,528</td><td>"API access per tier" matrix row (localized)</td></tr>
+        <tr><td><code>/keyword-research-api.html</code></td><td>F</td><td>API endpoint</td><td>EN</td><td class="num">1,402</td><td>Restructure: code samples + tier pricing + comparison</td></tr>
+        <tr><td><code>/competitors.html</code></td><td>E</td><td>Competitor</td><td>EN</td><td class="num">1,300</td><td>"API parity vs competitor" comparison row</td></tr>
+        <tr><td><code>/ac/worthy-semrush-alternative.html</code></td><td>E</td><td>Competitor</td><td>EN</td><td class="num">1,281</td><td>"API parity vs Semrush API" comparison row</td></tr>
+        <tr><td><code>/se-ranking-for-enterprises.html</code></td><td>D</td><td>Solution (Enterprise)</td><td>EN</td><td class="num">1,317</td><td><strong>Full Enterprise API block</strong> — SSO, SLA, audit, "Architecture review" CTA</td></tr>
+        <tr><td><code>/ua/subscription.html</code></td><td>A</td><td>Pricing</td><td>UA</td><td class="num">892</td><td>"API access per tier" matrix row (localized)</td></tr>
+        <tr><td><code>/jp/subscription.html</code></td><td>A</td><td>Pricing</td><td>JP</td><td class="num">890</td><td>"API access per tier" matrix row (localized)</td></tr>
+        <tr><td><code>/it/subscription.html</code></td><td>A</td><td>Pricing</td><td>IT</td><td class="num">808</td><td>"API access per tier" matrix row (localized)</td></tr>
+        <tr><td><code>/api/how-to-get-api/</code></td><td>F</td><td>API sub-page</td><td>EN</td><td class="num">1,170</td><td>Restructure: clarity + 5-min flow</td></tr>
+        <tr><td><code>/ru/podpiska.html</code></td><td>A</td><td>Pricing</td><td>RU</td><td class="num">1,249</td><td>"API access per tier" matrix row (localized)</td></tr>
+        <tr><td><code>/api/data/keyword-research/</code></td><td>F</td><td>API endpoint doc</td><td>EN</td><td class="num">879</td><td>Restructure: code samples + sample responses</td></tr>
+        <tr><td><code>/api/data/backlinks/</code></td><td>F</td><td>API endpoint doc</td><td>EN</td><td class="num">796</td><td>Restructure: code samples + sample responses</td></tr>
+        <tr><td><code>/worthy-ahrefs-alternative.html</code></td><td>E</td><td>Competitor</td><td>EN</td><td class="num">628</td><td>"API parity vs Ahrefs API" comparison row</td></tr>
+        <tr><td><code>/backlinks-api.html</code></td><td>F</td><td>API endpoint</td><td>EN</td><td class="num">556</td><td>Restructure: code samples + tier pricing + comparison</td></tr>
+        <tr><td><code>/de/worthy-seobility-alternative.html</code></td><td>E</td><td>Competitor</td><td>DE</td><td class="num">483</td><td>"API parity vs Seobility" comparison row</td></tr>
+        <tr><td><code>/fr/worthy-ahrefs-alternative.html</code></td><td>E</td><td>Competitor</td><td>FR</td><td class="num">472</td><td>"API parity vs Ahrefs API" comparison row (localized)</td></tr>
+        <tr><td><code>/es/api.html</code></td><td>F</td><td>API hub (localized)</td><td>ES</td><td class="num">414</td><td>Mirror full EN /api.html structure</td></tr>
+        <tr><td><code>/fr/api.html</code></td><td>F</td><td>API hub (localized)</td><td>FR</td><td class="num">409</td><td>Mirror full EN /api.html structure</td></tr>
+        <tr><td><code>/domain-analysis-api.html</code></td><td>F</td><td>API endpoint</td><td>EN</td><td class="num">385</td><td>Restructure: code samples + tier pricing</td></tr>
+        <tr><td><code>/de/worthy-sistrix-alternative.html</code></td><td>E</td><td>Competitor</td><td>DE</td><td class="num">371</td><td>"API parity vs Sistrix" comparison row</td></tr>
+        <tr><td><code>/de/api.html</code></td><td>F</td><td>API hub (localized)</td><td>DE</td><td class="num">345</td><td>Mirror full EN /api.html structure</td></tr>
       </tbody>
     </table>
   </div>
+  <p class="plan-lede" style="margin-top:12px; margin-bottom:0; font-size:12px;">Bucket legend: <strong>A</strong> = Pricing matrix row · <strong>B</strong> = Feature code snippet · <strong>C</strong> = Homepage strip · <strong>D</strong> = Solution / Enterprise block · <strong>E</strong> = Competitor parity row · <strong>F</strong> = API page restructure. Smaller competitor / API / endpoint pages (≤300 visitors) follow the same bucket logic — full coverage list per bucket is in G8 expandable details.</p>
+
+  <!-- ============== SECTION: Pages to create ============== -->
+  <div class="plan-h3">5 · Pages to create — must-have vs nice-to-have</div>
+  <p class="plan-lede" style="margin-bottom:18px;">G1–G12 optimize the existing 236 pages. This section is the inverse — what to <em>build</em>. Split into Must-have (clear gaps that block other groups or capture defined buyer intent) and Nice-to-have (warranted but not blocking). New-page work is content-heavy and design-light — content team owns this track.</p>
+
+  <!-- Must-have header -->
+  <div style="display:flex; align-items:center; gap:12px; margin: 18px 0 10px;">
+    <span style="background: var(--pri-high); color:#fff; padding: 4px 12px; border-radius:999px; font-size: 11px; font-weight: 800; letter-spacing: .08em;">MUST HAVE</span>
+    <span style="font-size: 13px; color: var(--muted); font-weight:600;">Real gaps with concrete buyer intent or unblocking dependencies for G1–G12</span>
+  </div>
+
+  <div class="plan-groups" style="margin-top:8px;">
+
+    <!-- N1 — Industry / vertical pages -->
+    <div class="plan-group high">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">N1 · Industry / vertical landing pages</div>
+          <div class="plan-group-title">Create vertical-specific landing pages — E-commerce, SaaS, Local business, Real estate, Hospitality</div>
+        </div>
+        <span class="plan-pill high">Must</span>
+      </div>
+      <div class="plan-meta"><span>0 vertical pages today</span><span>5 new pages</span><span>Long-tail SEO + paid LP</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>The portfolio has 0 industry-specific landing pages — only generic persona pages (Agency, SMB, Entrepreneur, Enterprise). Vertical pages serve two functions: (1) capture long-tail SEO ("SEO tool for ecommerce", "SEO software for SaaS"), and (2) become high-converting paid-search LPs because vertical searchers have very specific intent. Competitors like Semrush and Ahrefs have these pages — SE Ranking doesn\'t, and that means losing every vertical-search query.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Create vertical pages reusing the G5 Solution-page template with industry-specific copy: 2–3 named case studies per industry, vertical-specific UI screenshots (e.g. e-commerce dashboard with product-keyword tracking), industry pain-point hero copy, and pricing tier matched to the typical vertical buyer profile.</div>
+      <div class="plan-row block-row"><span class="lbl">New pages</span><span class="val">/seo-for-ecommerce.html · /seo-for-saas.html · /seo-for-local-business.html · /seo-for-real-estate.html · /seo-for-hospitality.html</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Long-tail SEO capture (low individual volume but high intent) plus a more focused destination for paid campaigns targeting vertical keywords. Realistic ~3–5k new monthly organic visitors aggregate after 6 months, with paid-conversion rate 2–4× generic LPs (vertical searchers convert higher than generic).</div>
+      <details class="plan-pages"><summary>Verticals to prioritize + sequencing</summary><ul>
+        <li><strong>1. E-commerce</strong> — biggest vertical SEO budget, highest intent, easiest to find named case studies. <code>/seo-for-ecommerce.html</code></li>
+        <li><strong>2. SaaS</strong> — overlap with SE Ranking\'s own ICP, easy authoritative content. <code>/seo-for-saas.html</code></li>
+        <li><strong>3. Local business</strong> — connects with existing <code>/local-rank-tracker.html</code> + <code>/[locale]/local-marketing-tool.html</code> pages. <code>/seo-for-local-business.html</code></li>
+        <li><strong>4. Real estate</strong> — high CPC vertical, sales teams will appreciate qualified leads</li>
+        <li><strong>5. Hospitality / hotels</strong> — international audience aligns with SE Ranking\'s locale strategy</li>
+        <li><em>Skip B2B / Healthcare / Education for now</em> — too broad and underserved by content team to do well; revisit after 5 above prove out</li>
+        <li><strong>Localized variants:</strong> after EN versions ship, prioritize DE/ES/FR/NL for E-commerce + SaaS only — top-2 verticals × top-4 non-EN locales = 8 additional pages</li>
+      </ul></details>
+    </div>
+
+    <!-- N2 — CMO / Digital Marketer page -->
+    <div class="plan-group high">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">N2 · CMO / Digital Marketer solution page</div>
+          <div class="plan-group-title">Create dedicated landing for CMOs and Digital Marketers — the persona SE Visible already targets but SE Ranking doesn\'t</div>
+        </div>
+        <span class="plan-pill high">Must</span>
+      </div>
+      <div class="plan-meta"><span>0 today</span><span>1 EN + 5 localized</span><span>Aligns with SE Visible</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>SE Ranking has solution pages for Agency / SMB / Entrepreneur / Enterprise — but no page for <strong>CMOs and Digital Marketers</strong>, even though SE Visible explicitly targets that persona on its own site. This creates two problems: (1) CMO-level buyers landing on SE Ranking have no dedicated story; (2) the cross-promo from G12 has no natural landing target for "marketing director" persona. Adding this page makes G12 stronger AND closes a real persona gap.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Create <code>/se-ranking-for-cmos.html</code> (or <code>/for-digital-marketers.html</code>) with content focused on multi-channel marketing oversight: SEO performance + AI visibility + social schedule visibility from one stack. Highlight the ecosystem (G12) as the differentiator — only SE Ranking has all three under one roof. Localize to EN/FR/DE/NL/ES (5 SE-Visible-supported locales) so the cross-promo lands cleanly.</div>
+      <div class="plan-row block-row"><span class="lbl">New pages</span><span class="val">/se-ranking-for-cmos.html (or /for-digital-marketers.html) + 4 localized variants (FR, DE, NL, ES)</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Captures decision-maker-level SEO searches that currently land on Enterprise page (wrong persona) or homepage (too broad). Modest direct organic volume but very high LTV — CMOs typically buy multi-seat plans. Strongest synergy with G12 ecosystem positioning — without this page, the ecosystem story has no persona-anchored home.</div>
+    </div>
+
+  </div>
+
+  <!-- Nice-to-have header -->
+  <div style="display:flex; align-items:center; gap:12px; margin: 28px 0 10px;">
+    <span style="background: var(--pri-low); color:#fff; padding: 4px 12px; border-radius:999px; font-size: 11px; font-weight: 800; letter-spacing: .08em;">NICE TO HAVE</span>
+    <span style="font-size: 13px; color: var(--muted); font-weight:600;">Strategic question to evaluate — depends on data not visible in this dashboard</span>
+  </div>
+
+  <div class="plan-groups" style="margin-top:8px;">
+
+    <!-- N3 — Competitor-specific migration pages (evaluation) -->
+    <div class="plan-group low">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">N3 · Competitor-specific migration pages</div>
+          <div class="plan-group-title">Evaluate whether competitor-specific migration pages are warranted on top of the existing main migration page</div>
+        </div>
+        <span class="plan-pill low">Evaluate</span>
+      </div>
+      <div class="plan-meta"><span>1 main page exists</span><span>4 potential additions</span><span>Decision-required</span></div>
+      <div class="plan-row"><span class="lbl">Why this is a question, not a task</span>SE Ranking already has the main migration page in production. The question is whether to also build dedicated <code>/migrate-from-semrush</code> · <code>/migrate-from-ahrefs</code> · <code>/migrate-from-sistrix</code> · <code>/migrate-from-seobility</code> pages on top of it. Three signals to check before committing:</div>
+      <div class="plan-row"><span class="lbl">1 · SEO query volume</span>Check search volume in SE Ranking itself for "migrate from Semrush", "Semrush to SE Ranking", "switch from Ahrefs", etc. If volume is meaningful (>500/mo per competitor), competitor-specific pages capture that traffic better than a generic page. If volume is negligible, the main page is enough.</div>
+      <div class="plan-row"><span class="lbl">2 · Tooling differentiation</span>Does Semrush export differ in structure from Ahrefs export? If the data-import flow is genuinely different per competitor (different CSV columns, different project structures), separate pages let you show competitor-specific screenshots and instructions. If the import flow is the same regardless of source, one universal page is simpler.</div>
+      <div class="plan-row"><span class="lbl">3 · Paid campaign plans</span>Do you plan to run "switch from X" PPC campaigns? Dedicated LPs typically lift Quality Score and conversion 20–40% over universal pages. If no paid campaigns are planned, organic traffic alone may not justify dedicated pages.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Pull search-volume data for the 4 main "migrate from X" queries in SE Ranking. If aggregate monthly search volume across all 4 is &gt; 2k, build competitor-specific pages — they pay back. If &lt; 2k, the existing main migration page is sufficient and the work belongs after N1 + N2.</div>
+      <div class="plan-row block-row"><span class="lbl">If approved</span><span class="val">/migrate-from-semrush · /migrate-from-ahrefs · /migrate-from-sistrix · /migrate-from-seobility (+ DE/ES/FR localized for top 2)</span></div>
+    </div>
+
+  </div>
+
+  <!-- Priority summary -->
+  <div class="plan-h3">New-page priority summary</div>
+  <div class="plan-table-wrap">
+    <table class="plan-table">
+      <thead><tr><th>ID</th><th>Group</th><th>Tier</th><th>Pages count</th><th>Sequencing note</th></tr></thead>
+      <tbody>
+        <tr><td><strong>N1</strong></td><td>Industry / vertical pages (E-comm, SaaS, Local, Real estate, Hospitality)</td><td><strong style="color:#b91c1c;">Must</strong></td><td>5 EN + 8 localized</td><td>Wave 3–4 — reuses G5 solution template; content-heavy track for content team</td></tr>
+        <tr><td><strong>N2</strong></td><td>CMO / Digital Marketer solution page</td><td><strong style="color:#b91c1c;">Must</strong></td><td>1 EN + 4 localized</td><td>Wave 3 — strengthens G12 ecosystem; pair with G5 case-study commissioning</td></tr>
+        <tr><td><strong>N3</strong></td><td>Competitor-specific migration pages (evaluate first)</td><td><strong style="color:#15803d;">Evaluate</strong></td><td>0–4 EN (decision)</td><td>Pull SEO data first; if approved, ship before G3 paid campaigns</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="plan-lede" style="margin-top:12px; margin-bottom:0; font-size:12px;">Note: gaps for localization, integrations, comparison pages, and resource hub were initially flagged but later confirmed by the team as either already in production or in active development — removed from this section. The remaining items are confirmed gaps.</p>
 
   <!-- Quick wins / Strategic -->
-  <div class="plan-h3">5 · Quick wins vs strategic tasks</div>
+  <div class="plan-h3">6 · Quick wins vs strategic tasks</div>
   <div class="plan-twocol">
     <div class="plan-list-card quick">
       <h3>⚡ Quick wins (weeks 1–3)</h3>
@@ -954,7 +1257,7 @@
   </div>
 
   <!-- Success metrics -->
-  <div class="plan-h3">6 · Success metrics (90-day targets)</div>
+  <div class="plan-h3">7 · Success metrics (90-day targets)</div>
   <div class="plan-table-wrap plan-metrics-table">
     <table class="plan-table">
       <thead><tr><th>Metric</th><th>Baseline</th><th>90-day target</th><th>Owner</th></tr></thead>
@@ -967,6 +1270,12 @@
         <tr><td>Free-tool → paid conversion</td><td>0 (across 10 pages)</td><td><strong>40 / mo</strong></td><td>Lifecycle marketing</td></tr>
         <tr><td>Localized-homepage reg rate (DE / JP / IT)</td><td>2.8% – 4.9%</td><td><strong>&gt;8%</strong></td><td>Localization</td></tr>
         <tr><td>Pages with product UI visible (G1 scope: 194)</td><td>10 / 236 (4%)</td><td><strong>&gt;120 / 194 (&gt;60%)</strong></td><td>Design ops</td></tr>
+        <tr><td>Pages cross-linking SE Visible (G12 — EN/FR/DE/NL/ES locales only)</td><td>10 / 236</td><td><strong>&gt;100 / 236</strong></td><td>Cross-product PM</td></tr>
+        <tr><td>Pages cross-linking Planable (G12 ecosystem scope: 63)</td><td>11 / 236</td><td><strong>&gt;55 / 63</strong></td><td>Cross-product PM</td></tr>
+        <tr><td>Pricing pages with SE Visible bundle row (5 supported locales)</td><td>0 / 5</td><td><strong>5 / 5</strong></td><td>Pricing PM + Cross-product PM</td></tr>
+        <tr><td>Must-have new pages shipped (N1 verticals + N2 CMO)</td><td>0</td><td><strong>6 EN + 12 localized</strong></td><td>Content lead</td></tr>
+        <tr><td>Pages with appropriate API surface block (G8 scope: ~67 + restructure)</td><td>~5 / 236</td><td><strong>&gt;55 / 67</strong></td><td>API PM + Pricing PM</td></tr>
+        <tr><td>API-tier paid conversions / month</td><td>~2 (via /api.html)</td><td><strong>15+</strong></td><td>API PM</td></tr>
       </tbody>
     </table>
   </div>
