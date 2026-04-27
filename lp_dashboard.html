@@ -587,7 +587,7 @@
 
   <!-- Executive findings -->
   <div class="plan-h3">1 · Executive summary — key findings</div>
-  <div class="plan-finding"><strong>Product UI is essentially invisible.</strong> Only 10 of 236 pages (4%) show product UI in the audit; 226 ask visitors to convert with zero in-page proof. This is the single largest conversion drag — and it is one template fix, not 226.</div>
+  <div class="plan-finding"><strong>Product UI is essentially invisible.</strong> Only 10 of 236 pages (4%) show product UI in the audit; 226 ask visitors to convert with zero in-page proof. The fix is template-level — and the practical scope is 194 pages (excluding 10 pricing pages and 22 API pages, which need different treatments — see G2 and G8).</div>
   <div class="plan-finding"><strong>Localization is a thin-content problem.</strong> 175 of 236 pages are non-EN (74%). Most are flagged "likely thinner than EN equivalent" — partial translations, not real localized assets. Localized homepages alone drive ~95k visitors.</div>
   <div class="plan-finding"><strong>21 competitor pages are mispositioned.</strong> All HIGH priority, all default to "cheaper than X" framing, all lack feature matrices and migration toolkits. ~22k visitors → only ~12 paid.</div>
   <div class="plan-finding"><strong>10 pricing pages globally underperform.</strong> All HIGH priority, all fail the A1 Owner persona. 110k visitors → 465 paid (0.42%). No agency tier highlighting, no Semrush/Ahrefs ROI, no migration credit.</div>
@@ -634,27 +634,28 @@
       <div class="plan-group-head">
         <div>
           <div class="plan-group-id">G1 · Highest leverage</div>
-          <div class="plan-group-title">Add a 'Product UI strip' to all pages currently missing product visuals</div>
+          <div class="plan-group-title">Add a 'Product UI strip' to feature, solution, competitor, AI, free-tool, promo &amp; homepage pages currently missing product visuals</div>
         </div>
         <span class="plan-pill high">High</span>
       </div>
-      <div class="plan-meta"><span>226 pages affected</span><span>96% of portfolio</span><span>One template fix</span></div>
-      <div class="plan-row"><span class="lbl">Why it matters</span>226 of 236 pages have no product UI visible. A2 Team Leads can't assess usability, A3 SEO Pros can't assess depth without seeing the product. Single biggest systemic conversion drag.</div>
-      <div class="plan-row"><span class="lbl">Recommended action</span>Build one reusable Product UI strip component (above-the-fold screenshot + 15–30s loop video + 3 ROI bullets + role-split CTA). Roll out to HIGH-priority pages in Wave 2; rest via template change in Wave 4.</div>
+      <div class="plan-meta"><span>194 pages affected</span><span>Excludes pricing (→G2) &amp; API (→G8)</span><span>One template fix</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>Of 226 pages flagged "no product UI visible," 194 are pages where visitors are still deciding whether to try the product — feature, solution, competitor, AI, free-tool, promo and homepage. On these, A2 Team Leads can't assess usability and A3 SEO Pros can't assess depth without seeing the product. Pricing (10 pages) and Technical/API (22 pages) are deliberately excluded — they need different treatment, covered by G2 and G8 respectively.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Build one reusable Product UI strip component (above-the-fold screenshot + 15–30s loop video + 3 ROI bullets + role-split CTA). Roll out to HIGH-priority pages in Wave 2; rest via template change in Wave 4. Do NOT apply to pricing pages (visitors there are comparing tiers, not evaluating the product) or API pages (which need code samples, not UI screenshots).</div>
       <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;ProductUIStrip feature="..." screenshotSrc="..." videoSrc="..." roiBullets={[...]} ctaPrimary="Book demo" ctaSecondary="Start free trial" /&gt;</span></div>
       <div class="plan-row"><span class="lbl">Expected impact</span>Lifts blended reg rate on feature/solution/competitor pages from ~7% to a realistic 10–14% — several thousand additional registrations per month.</div>
       <details class="plan-pages"><summary>Top affected pages</summary><ul>
-        <li><code>/subscription.html</code> — 76,655 visitors, Pricing</li>
-        <li><code>/easy-to-use.html</code> — 37,438 visitors</li>
-        <li><code>/backlink-checker.html</code> — 31,911 visitors</li>
-        <li><code>/ac/easy-to-use.html</code> — 24,523 visitors</li>
-        <li><code>/competitor-traffic-research.html</code> — 13,404 visitors</li>
-        <li><code>/worthy-semrush-alternative.html</code> — 13,082 visitors</li>
-        <li><code>/position-tracking.html</code> — 12,560 visitors</li>
-        <li><code>/google-ranking-checker.html</code> — 10,035 visitors</li>
-        <li><code>/api.html</code> — 9,603 visitors</li>
-        <li><code>/features.html</code> — 8,121 visitors</li>
-        <li><em>+ 216 more — see filtered queue with Visible = "No"</em></li>
+        <li><code>/easy-to-use.html</code> — 37,438 visitors, Promo</li>
+        <li><code>/backlink-checker.html</code> — 31,911 visitors, Feature</li>
+        <li><code>/es/</code> — 27,704 visitors, Homepage</li>
+        <li><code>/ac/easy-to-use.html</code> — 24,523 visitors, Promo</li>
+        <li><code>/fr/</code> — 20,195 visitors, Homepage</li>
+        <li><code>/fr/analyse-trafic-site-web.html</code> — 15,564 visitors, Feature</li>
+        <li><code>/de/</code> — 13,766 visitors, Homepage</li>
+        <li><code>/competitor-traffic-research.html</code> — 13,404 visitors, Feature</li>
+        <li><code>/worthy-semrush-alternative.html</code> — 13,082 visitors, Competitor</li>
+        <li><code>/position-tracking.html</code> — 12,560 visitors, Feature</li>
+        <li><em>+ 184 more — filter the queue by Visible="No" and exclude Pricing + Technical/API page types.</em></li>
+        <li><strong>Excluded:</strong> 10 Pricing pages (covered by G2) and 22 Technical/API pages (covered by G8) — they need different treatments.</li>
       </ul></details>
     </div>
 
@@ -965,7 +966,7 @@
         <tr><td>AI-feature reg rate (ChatGPT / Gemini / Perplexity)</td><td>~1.2%</td><td><strong>3.5%</strong></td><td>AI feature PM</td></tr>
         <tr><td>Free-tool → paid conversion</td><td>0 (across 10 pages)</td><td><strong>40 / mo</strong></td><td>Lifecycle marketing</td></tr>
         <tr><td>Localized-homepage reg rate (DE / JP / IT)</td><td>2.8% – 4.9%</td><td><strong>&gt;8%</strong></td><td>Localization</td></tr>
-        <tr><td>Pages with product UI visible</td><td>10 / 236 (4%)</td><td><strong>&gt;150 / 236 (&gt;63%)</strong></td><td>Design ops</td></tr>
+        <tr><td>Pages with product UI visible (G1 scope: 194)</td><td>10 / 236 (4%)</td><td><strong>&gt;120 / 194 (&gt;60%)</strong></td><td>Design ops</td></tr>
       </tbody>
     </table>
   </div>
