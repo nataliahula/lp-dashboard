@@ -76,6 +76,76 @@
     h1 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.05; margin: 18px 0 14px; max-width: 14ch; letter-spacing: -0.04em; }
     .hero-copy { max-width: 62ch; color: var(--muted); font-size: 16px; line-height: 1.6; }
     .hero-note { margin-top: 16px; color: var(--muted); font-size: 13px; font-weight: 600; }
+    .hero-cta-row {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 999px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      letter-spacing: .01em; cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      border: none;
+    }
+    .hero-cta.primary {
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-strong) 100%);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.32);
+    }
+    .hero-cta.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.42);
+    }
+    .hero-cta.secondary {
+      background: rgba(37,99,235,.08);
+      color: var(--accent-strong);
+      border: 1px solid rgba(37,99,235,.18);
+    }
+    .hero-cta.secondary:hover {
+      background: rgba(37,99,235,.14);
+    }
+    .hero-cta .arrow {
+      display: inline-block; transition: transform .15s ease;
+    }
+    .hero-cta:hover .arrow { transform: translateX(3px); }
+    .hero-cta-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 22px; height: 22px; padding: 0 7px; border-radius: 999px;
+      background: rgba(255,255,255,.22); color: #fff;
+      font-size: 11px; font-weight: 800;
+    }
+
+    /* Floating "Action plan" button — available from any scroll position */
+    .float-jump {
+      position: fixed; right: 24px; bottom: 24px; z-index: 100;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 18px; border-radius: 999px;
+      background: linear-gradient(90deg, #0f172a 0%, var(--accent-strong) 100%);
+      color: #fff; font-size: 13px; font-weight: 700;
+      letter-spacing: .02em; text-decoration: none;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.32);
+      cursor: pointer; border: none;
+      transition: transform .15s ease, box-shadow .15s ease, opacity .25s ease;
+      opacity: 0; pointer-events: none;
+    }
+    .float-jump.visible { opacity: 1; pointer-events: auto; }
+    .float-jump:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.42);
+    }
+    .float-jump .icon {
+      width: 18px; height: 18px; display: inline-flex;
+      align-items: center; justify-content: center;
+      background: rgba(255,255,255,.18); border-radius: 999px;
+      font-size: 11px;
+    }
+    @media (max-width: 720px) {
+      .float-jump { right: 14px; bottom: 14px; padding: 10px 14px; font-size: 12px; }
+      .float-jump .label-full { display: none; }
+    }
+
+    html { scroll-behavior: smooth; }
+    #action-plan { scroll-margin-top: 18px; }
     .summary-stack { display: grid; gap: 16px; }
     .summary-card { padding: 22px; background: linear-gradient(180deg,#fff 0%,#f8fbff 100%); }
     .summary-card h2, .filter-card h2, .segment-card h2, .results-card h2, .insights-card h2 {
@@ -201,6 +271,172 @@
       .card-top { flex-direction: column; }
       .priority-score { text-align: left; }
     }
+
+    /* ===== Action plan section ===== */
+    .plan-section {
+      margin-top: 28px;
+      background: var(--panel);
+      border: 1px solid rgba(37,99,235,.08);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+    .plan-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+      border-radius: var(--radius-sm); background: rgba(37,99,235,.1);
+      color: var(--accent); font-size: 12px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .plan-section h2.plan-title {
+      font-size: 28px; line-height: 1.15; margin: 14px 0 10px;
+      letter-spacing: -0.02em; color: var(--ink);
+      text-transform: none;
+    }
+    .plan-section p.plan-lede {
+      max-width: 78ch; color: var(--muted); font-size: 15px; line-height: 1.6; margin: 0 0 22px;
+    }
+    .plan-summary-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px;
+      margin-bottom: 26px;
+    }
+    .plan-stat {
+      padding: 14px 16px; border-radius: 18px;
+      background: linear-gradient(180deg,#fff 0%,#f8fbff 100%);
+      border: 1px solid rgba(37,99,235,.1);
+    }
+    .plan-stat .l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .plan-stat .v { margin-top: 4px; font-size: 22px; font-weight: 700; color: var(--ink); }
+    .plan-stat .s { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .plan-h3 {
+      margin: 22px 0 10px; font-size: 13px; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted); font-weight: 700;
+    }
+    .plan-finding {
+      padding: 12px 14px 12px 16px; border-radius: 14px; margin-bottom: 8px;
+      background: linear-gradient(180deg,#fff 0%,#f8fbff 100%);
+      border: 1px solid rgba(37,99,235,.08);
+      border-left: 4px solid var(--accent);
+      font-size: 13.5px; line-height: 1.55;
+    }
+    .plan-finding strong { color: var(--ink); }
+
+    /* Roadmap waves */
+    .plan-roadmap {
+      display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px;
+      margin-top: 8px;
+    }
+    .plan-wave {
+      padding: 16px; border-radius: 18px;
+      background: linear-gradient(180deg,#fff 0%,#f8fbff 100%);
+      border: 1px solid rgba(37,99,235,.1);
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .plan-wave .wt { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 700; }
+    .plan-wave .wn { font-size: 16px; font-weight: 700; color: var(--ink); }
+    .plan-wave .wd { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .plan-wave .wi { font-size: 12px; color: var(--accent-strong); font-weight: 600; margin-top: auto; padding-top: 6px; }
+
+    /* Bulk-action group cards */
+    .plan-groups {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px;
+      margin-top: 8px;
+    }
+    .plan-group {
+      padding: 18px 20px; border-radius: 20px;
+      background: linear-gradient(180deg,#fff 0%,#f8fbff 100%);
+      border: 1px solid rgba(37,99,235,.1);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .plan-group.high { border-left: 5px solid var(--pri-high); }
+    .plan-group.medium { border-left: 5px solid var(--pri-medium); }
+    .plan-group.low { border-left: 5px solid var(--pri-low); }
+    .plan-group-head {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+    }
+    .plan-group-id {
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .plan-group-title {
+      font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.3;
+      margin: 4px 0 0;
+    }
+    .plan-pill {
+      flex-shrink: 0; padding: 4px 10px; border-radius: 999px;
+      font-size: 10px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: #fff;
+    }
+    .plan-pill.high { background: var(--pri-high); }
+    .plan-pill.medium { background: var(--pri-medium); }
+    .plan-pill.low { background: var(--pri-low); }
+    .plan-meta {
+      display: flex; flex-wrap: wrap; gap: 8px; font-size: 11px; color: var(--muted);
+    }
+    .plan-meta span {
+      padding: 3px 8px; border-radius: 999px; background: rgba(37,99,235,.08);
+    }
+    .plan-row { font-size: 13px; line-height: 1.55; color: var(--ink); }
+    .plan-row .lbl { font-weight: 700; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; display: block; margin-bottom: 2px; }
+    .plan-row.block-row .val {
+      display: block; font-family: "Menlo", "Consolas", monospace;
+      background: var(--accent-soft); color: var(--accent-strong);
+      padding: 8px 10px; border-radius: 8px; font-size: 12px;
+      border: 1px solid rgba(37,99,235,.15);
+    }
+    details.plan-pages summary {
+      cursor: pointer; font-size: 12px; color: var(--accent); font-weight: 600;
+      padding: 4px 0; list-style: none;
+    }
+    details.plan-pages summary::-webkit-details-marker { display: none; }
+    details.plan-pages summary::after { content: " ▾"; }
+    details.plan-pages[open] summary::after { content: " ▴"; }
+    details.plan-pages ul { margin: 6px 0 0; padding-left: 18px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+    details.plan-pages code { background: var(--accent-soft); color: var(--accent-strong); padding: 1px 5px; border-radius: 4px; font-size: 11px; }
+
+    /* API table */
+    .plan-table-wrap { overflow-x: auto; margin-top: 8px; border-radius: 14px; border: 1px solid rgba(37,99,235,.1); }
+    .plan-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .plan-table th {
+      background: linear-gradient(90deg, #0f172a 0%, #1d4ed8 100%); color: #fff;
+      text-align: left; font-weight: 700; padding: 10px 12px; font-size: 11px;
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+    .plan-table td { padding: 10px 12px; border-top: 1px solid rgba(37,99,235,.08); color: var(--ink); }
+    .plan-table tr:nth-child(even) td { background: #f8fbff; }
+    .plan-table td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+    .plan-table code { background: var(--accent-soft); color: var(--accent-strong); padding: 1px 5px; border-radius: 4px; font-size: 11.5px; }
+
+    /* Quick wins / strategic columns */
+    .plan-twocol {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;
+    }
+    .plan-list-card {
+      padding: 18px 20px; border-radius: 18px;
+      background: linear-gradient(180deg,#fff 0%,#f8fbff 100%);
+      border: 1px solid rgba(37,99,235,.1);
+    }
+    .plan-list-card.quick { border-top: 4px solid #16a34a; }
+    .plan-list-card.strategic { border-top: 4px solid var(--accent); }
+    .plan-list-card h3 { margin: 0 0 10px; font-size: 16px; color: var(--ink); }
+    .plan-list-card ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.6; color: var(--ink); }
+    .plan-list-card li { margin-bottom: 6px; }
+    .plan-list-card li strong { color: var(--accent-strong); }
+
+    /* Metrics table */
+    .plan-metrics-table { margin-top: 8px; }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .plan-summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .plan-roadmap { grid-template-columns: repeat(2, 1fr); }
+      .plan-groups { grid-template-columns: 1fr; }
+      .plan-twocol { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .plan-section { padding: 22px; border-radius: 20px; }
+      .plan-summary-grid { grid-template-columns: 1fr 1fr; }
+      .plan-roadmap { grid-template-columns: 1fr; }
+    }
 </style>
 </head>
 <body>
@@ -220,6 +456,16 @@
           signals, and editorial diagnoses into a ranked action queue. Use the multi-select filters to narrow
           the 236-page set by priority, locale, page type, persona, or publishing flags.
         </p>
+        <div class="hero-cta-row">
+          <a href="#action-plan" class="hero-cta primary">
+            <span>View Action Plan</span>
+            <span class="hero-cta-badge">11</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#card-list" class="hero-cta secondary">
+            Browse pages
+          </a>
+        </div>
         <div class="hero-note">Local file. No backend. All 236 LPs embedded — filters recompute the conclusions below in real time.</div>
       </div>
       <div class="summary-stack">
@@ -324,6 +570,409 @@
         </div>
       </main>
     </section>
+
+<!-- ===================== ACTION PLAN SECTION ===================== -->
+<section class="plan-section" id="action-plan">
+  <span class="plan-eyebrow">Action plan · Bulk-first roadmap</span>
+  <h2 class="plan-title">Prioritized Action Plan — scalable improvements across the portfolio</h2>
+  <p class="plan-lede">The 236 pages in this dashboard share roughly 8 systemic patterns — not 236 individual problems. Fix the patterns once, deploy as reusable components across templates. The roadmap below is ordered by impact-per-unit-effort, with HIGH-priority pages targeted first.</p>
+
+  <!-- Portfolio stats -->
+  <div class="plan-summary-grid">
+    <div class="plan-stat"><div class="l">Pages analyzed</div><div class="v">236</div><div class="s">across 10 locales</div></div>
+    <div class="plan-stat"><div class="l">Total visitors / mo</div><div class="v">901,319</div><div class="s">non-logged-in</div></div>
+    <div class="plan-stat"><div class="l">Total registrations</div><div class="v">63,125</div><div class="s">7.0% blended</div></div>
+    <div class="plan-stat"><div class="l">Total paid conversions</div><div class="v">1,181</div><div class="s">0.13% blended</div></div>
+  </div>
+
+  <!-- Executive findings -->
+  <div class="plan-h3">1 · Executive summary — key findings</div>
+  <div class="plan-finding"><strong>Product UI is essentially invisible.</strong> Only 10 of 236 pages (4%) show product UI in the audit; 226 ask visitors to convert with zero in-page proof. This is the single largest conversion drag — and it is one template fix, not 226.</div>
+  <div class="plan-finding"><strong>Localization is a thin-content problem.</strong> 175 of 236 pages are non-EN (74%). Most are flagged "likely thinner than EN equivalent" — partial translations, not real localized assets. Localized homepages alone drive ~95k visitors.</div>
+  <div class="plan-finding"><strong>21 competitor pages are mispositioned.</strong> All HIGH priority, all default to "cheaper than X" framing, all lack feature matrices and migration toolkits. ~22k visitors → only ~12 paid.</div>
+  <div class="plan-finding"><strong>10 pricing pages globally underperform.</strong> All HIGH priority, all fail the A1 Owner persona. 110k visitors → 465 paid (0.42%). No agency tier highlighting, no Semrush/Ahrefs ROI, no migration credit.</div>
+  <div class="plan-finding"><strong>AI-feature pages leak conversions.</strong> ChatGPT 1.3% reg rate, Gemini 1.2%, Perplexity 1.3% — 5–10× lower than non-AI feature pages. Visitors want methodology proof; pages don't supply it.</div>
+  <div class="plan-finding"><strong>"easy-to-use" PPC cluster is anti-upmarket.</strong> 13 pages, 91k visitors, 7,582 regs — but only 28 paid. Attracts users who churn. Strategically harmful positioning.</div>
+  <div class="plan-finding"><strong>API content is siloed.</strong> 22 technical/API pages exist but 27 high-traffic non-API pages flagged api=Yes barely link to them.</div>
+  <div class="plan-finding"><strong>Solution pages are ROI-thin.</strong> All 22 (Agency / SMB / Entrepreneur / Enterprise) read like feature lists, not business cases. Agency page: 6,941 visitors → 2 paid.</div>
+
+  <!-- Roadmap -->
+  <div class="plan-h3">2 · 90-day roadmap</div>
+  <div class="plan-roadmap">
+    <div class="plan-wave">
+      <div class="wt">Wave 1 · Weeks 1–3</div>
+      <div class="wn">Foundation</div>
+      <div class="wd">Build reusable component library (6 blocks). Pilot on EN homepage + EN pricing + EN agency.</div>
+      <div class="wi">Unblocks every wave below · ~380k visitors covered</div>
+    </div>
+    <div class="plan-wave">
+      <div class="wt">Wave 2 · Weeks 3–6</div>
+      <div class="wn">HIGH-priority EN rollout</div>
+      <div class="wd">Deploy components across 20 HIGH EN pages: competitors, AI, solution, pricing.</div>
+      <div class="wi">Highest reg-rate lift potential · ~85k visitors</div>
+    </div>
+    <div class="plan-wave">
+      <div class="wt">Wave 3 · Weeks 5–9</div>
+      <div class="wn">Localized homepages + pricing</div>
+      <div class="wd">Apply to 9 localized homepages + 9 localized pricing pages. Add currency/VAT, regional case studies.</div>
+      <div class="wi">~110k visitors across DE/ES/FR/NL/PT/RU/UA/JP/IT</div>
+    </div>
+    <div class="plan-wave">
+      <div class="wt">Wave 4 · Weeks 8–12</div>
+      <div class="wn">Cluster cleanup</div>
+      <div class="wd">Retire dead "easy-to-use" locales. Bulk-add product UI via template change. API cross-link program.</div>
+      <div class="wi">Crawl budget + link equity recovery</div>
+    </div>
+  </div>
+
+  <!-- Bulk-action groups -->
+  <div class="plan-h3">3 · Bulk-action groups (G1–G11)</div>
+  <div class="plan-groups">
+
+    <!-- G1 -->
+    <div class="plan-group high">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G1 · Highest leverage</div>
+          <div class="plan-group-title">Add a 'Product UI strip' to all pages currently missing product visuals</div>
+        </div>
+        <span class="plan-pill high">High</span>
+      </div>
+      <div class="plan-meta"><span>226 pages affected</span><span>96% of portfolio</span><span>One template fix</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>226 of 236 pages have no product UI visible. A2 Team Leads can't assess usability, A3 SEO Pros can't assess depth without seeing the product. Single biggest systemic conversion drag.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Build one reusable Product UI strip component (above-the-fold screenshot + 15–30s loop video + 3 ROI bullets + role-split CTA). Roll out to HIGH-priority pages in Wave 2; rest via template change in Wave 4.</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;ProductUIStrip feature="..." screenshotSrc="..." videoSrc="..." roiBullets={[...]} ctaPrimary="Book demo" ctaSecondary="Start free trial" /&gt;</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Lifts blended reg rate on feature/solution/competitor pages from ~7% to a realistic 10–14% — several thousand additional registrations per month.</div>
+      <details class="plan-pages"><summary>Top affected pages</summary><ul>
+        <li><code>/subscription.html</code> — 76,655 visitors, Pricing</li>
+        <li><code>/easy-to-use.html</code> — 37,438 visitors</li>
+        <li><code>/backlink-checker.html</code> — 31,911 visitors</li>
+        <li><code>/ac/easy-to-use.html</code> — 24,523 visitors</li>
+        <li><code>/competitor-traffic-research.html</code> — 13,404 visitors</li>
+        <li><code>/worthy-semrush-alternative.html</code> — 13,082 visitors</li>
+        <li><code>/position-tracking.html</code> — 12,560 visitors</li>
+        <li><code>/google-ranking-checker.html</code> — 10,035 visitors</li>
+        <li><code>/api.html</code> — 9,603 visitors</li>
+        <li><code>/features.html</code> — 8,121 visitors</li>
+        <li><em>+ 216 more — see filtered queue with Visible = "No"</em></li>
+      </ul></details>
+    </div>
+
+    <!-- G2 -->
+    <div class="plan-group high">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G2 · Pricing overhaul</div>
+          <div class="plan-group-title">Restructure all 10 pricing pages around buyer persona, not feature limits</div>
+        </div>
+        <span class="plan-pill high">High</span>
+      </div>
+      <div class="plan-meta"><span>10 pages</span><span>110k visitors / mo</span><span>0.42% paid</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>All 10 fail A1 Owner persona — tiers framed as feature checklists, not buyer roles. No agency tier badge, no Semrush/Ahrefs ROI, no migration credit. Pricing is where comparison battles are won or lost.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Re-anchor tiers as personas (Solo / Teams / Agencies / Enterprise); add "Most popular for Agencies" badge; add Semrush/Ahrefs side-by-side ROI row; add "Switch &amp; save — free migration + 30-day credit"; add "Talk to sales" CTA on tiers ≥ $200/mo; localize currency + VAT.</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;PricingTemplate tiers={[solo,teams,agencies,enterprise]} comparisonSrc="semrush" migrationIncentive salesCTAThreshold={200} /&gt;</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>0.42% → 0.65% paid rate on 110k visitors = ~+300 paid subs/month across all locales.</div>
+      <details class="plan-pages"><summary>All affected pages</summary><ul>
+        <li><code>/subscription.html</code> — 76,655 visitors · 358 paid (EN)</li>
+        <li><code>/de/subscription.html</code> — 7,190 · 26 paid</li>
+        <li><code>/es/subscription.html</code> — 7,177 · 26 paid</li>
+        <li><code>/fr/subscription.html</code> — 6,790 · 26 paid</li>
+        <li><code>/nl/subscription.html</code> — 2,370 · 9 paid</li>
+        <li><code>/pt/subscription.html</code> — 1,528 · 2 paid</li>
+        <li><code>/ru/podpiska.html</code> — 1,249 · 8 paid</li>
+        <li><code>/ua/subscription.html</code> — 892 · 5 paid</li>
+        <li><code>/jp/subscription.html</code> — 890 · 5 paid</li>
+        <li><code>/it/subscription.html</code> — 808 · 4 paid</li>
+      </ul></details>
+    </div>
+
+    <!-- G3 -->
+    <div class="plan-group high">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G3 · Competitor reposition</div>
+          <div class="plan-group-title">Reposition all 21 'competitor alternative' pages from price-led to use-case-led</div>
+        </div>
+        <span class="plan-pill high">High</span>
+      </div>
+      <div class="plan-meta"><span>21 pages</span><span>22k visitors / mo</span><span>~12 paid</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>Every competitor page uses "cheaper than X" — commoditizes SE Ranking, attracts price shoppers who churn, loses migration-intent visitors. High-leverage, well-scoped content project.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Replace headline with use-case differentiation; add side-by-side feature-parity matrix; add product UI screenshots; add "Free X → SE Ranking migration in 7 days" toolkit with data-import tool; primary CTA = "Book migration consultation".</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;CompetitorAltTemplate competitor="Semrush" useCase="agencies" featureMatrix={...} migrationToolkit={...} /&gt;</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>2–3% of 22k monthly visitors into "Book migration consultation" = ~500 SQLs/month — pipeline the current pages don't generate.</div>
+      <details class="plan-pages"><summary>Top affected pages</summary><ul>
+        <li><code>/worthy-semrush-alternative.html</code> — 13,082 · 9 paid</li>
+        <li><code>/es/worthy-semrush-alternative.html</code> — 2,381</li>
+        <li><code>/nl/competitors.html</code> — 2,269</li>
+        <li><code>/competitors.html</code> — 1,300</li>
+        <li><code>/ac/worthy-semrush-alternative.html</code> — 1,281</li>
+        <li><code>/worthy-ahrefs-alternative.html</code> — 628 · 3 paid</li>
+        <li><code>/de/worthy-seobility-alternative.html</code> — 483</li>
+        <li><code>/fr/worthy-ahrefs-alternative.html</code> — 472</li>
+        <li><em>+ 13 more localized variants (DE, FR, ES, IT, JP, UA, PT)</em></li>
+      </ul></details>
+    </div>
+
+    <!-- G4 -->
+    <div class="plan-group high">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G4 · Localized homepages</div>
+          <div class="plan-group-title">Upgrade all 9 localized homepages with ROI + migration + role-split CTAs</div>
+        </div>
+        <span class="plan-pill high">High</span>
+      </div>
+      <div class="plan-meta"><span>9 pages</span><span>~95k visitors / mo</span><span>One template change</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>9 localized homepages mirror the EN structure and inherit the same persona failures: generic hero, no ROI, no migration, single signup CTA. JP at 2.8% reg rate vs PT at 18.9% — huge variance suggests room for improvement.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>One template update: outcome-led headline + ROI block above the fold + "Switch from Semrush/Ahrefs free" ribbon + 3 role-based CTAs (demo / team workflows / explore features) + localized case studies.</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;LocalizedHomepageHero roiBlock migrationRibbon roleCTAs={[demo,teams,features]} /&gt;</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Bringing the bottom 3 locales (DE 4.9%, JP 2.8%, IT 2.8%) halfway to PT/ES levels = several hundred extra registrations/month.</div>
+      <details class="plan-pages"><summary>All affected pages</summary><ul>
+        <li><code>/es/</code> — 27,704 · 3,742 regs</li>
+        <li><code>/fr/</code> — 20,195 · 2,314 regs</li>
+        <li><code>/de/</code> — 13,766 · 676 regs</li>
+        <li><code>/ru/</code> — 8,192 · 891 regs</li>
+        <li><code>/nl/</code> — 7,736 · 292 regs</li>
+        <li><code>/pt/</code> — 6,023 · 836 regs</li>
+        <li><code>/jp/</code> — 4,306 · 121 regs</li>
+        <li><code>/ua/</code> — 3,899 · 311 regs</li>
+        <li><code>/it/</code> — 3,879 · 108 regs</li>
+      </ul></details>
+    </div>
+
+    <!-- G5 -->
+    <div class="plan-group high">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G5 · Solution pages</div>
+          <div class="plan-group-title">Add ROI + named case studies + migration to all Agency / SMB / Entrepreneur / Enterprise pages</div>
+        </div>
+        <span class="plan-pill high">High</span>
+      </div>
+      <div class="plan-meta"><span>22 pages</span><span>All HIGH priority</span><span>&lt;0.1% paid</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>All 22 read like feature lists, not business cases. Agency page (6,941 visitors → 2 paid) is a strong underperformer. Enterprise page lacks SSO/SLA/logos. Localized variants (JP, IT, UA, NL) have zero registrations.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Persona-anchored solution template: quantified outcome headline + 2–3 named case studies + role-split CTA + migration block. Enterprise: remove self-serve signup, expose SSO/SAML/audit/SLA, add named logos, sole CTA = "Book enterprise demo".</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;SolutionPageTemplate persona="agency" caseStudies migrationBlock /&gt; + &lt;EnterpriseProofStrip logos sla sso /&gt;</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>3–5× lift on the agency page alone is plausible given its 6.9k monthly visitors. Solution pages are the highest-value funnel stage.</div>
+      <details class="plan-pages"><summary>Top affected pages</summary><ul>
+        <li><code>/se-ranking-for-agencies.html</code> — 6,941 · 149 regs · 2 paid</li>
+        <li><code>/se-ranking-for-entrepreneurs.html</code> — 1,879 · 78 regs</li>
+        <li><code>/se-ranking-for-smbs.html</code> — 1,853 · 82 regs</li>
+        <li><code>/se-ranking-for-enterprises.html</code> — 1,317 · 16 regs</li>
+        <li><code>/es/se-ranking-for-smbs.html</code> — 219</li>
+        <li><code>/nl/se-ranking-for-agencies.html</code> — 199</li>
+        <li><code>/pt/se-ranking-para-agencias.html</code> — 120</li>
+        <li><em>+ 15 more localized solution variants (agency / SMB / enterprise / entrepreneur)</em></li>
+      </ul></details>
+    </div>
+
+    <!-- G6 -->
+    <div class="plan-group high">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G6 · AI feature pages</div>
+          <div class="plan-group-title">Add methodology + ROI + product UI to all AI feature pages</div>
+        </div>
+        <span class="plan-pill high">High</span>
+      </div>
+      <div class="plan-meta"><span>20 pages</span><span>~50k visitors / mo</span><span>5–10× below peers</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>AI is the strategic growth bet. Pages already attract traffic but ChatGPT 1.3%, Gemini 1.2%, Perplexity 1.3% reg rates are 5–10× lower than non-AI features — visitors want methodology proof before converting.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Reusable Methodology + ROI block: "How we track" (LLMs covered, crawl frequency, accuracy) + ROI block ("AI search is X% of traffic by 2026") + technical FAQ + "See it on your domain" free-scan CTA + Semrush AI comparison. EN pages already have UI — pure copy/block addition.</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;AIMethodologyBox llms={...} crawlFreq accuracy /&gt; + &lt;AIROIBlock year={2026} /&gt; + &lt;FreeAIScanCTA /&gt;</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Lifting ChatGPT/Gemini/Perplexity from ~1.2% to 4% (matches AI Visibility Tracker at 7.4%) = 500+ extra registrations/month.</div>
+      <details class="plan-pages"><summary>Top affected pages</summary><ul>
+        <li><code>/ai-visibility-tracker.html</code> — 15,873 · 926 regs (7.4%)</li>
+        <li><code>/chatgpt-visibility-tracker.html</code> — 15,597 · 193 regs (1.3%)</li>
+        <li><code>/ai-overviews-tracker.html</code> — 6,183 · 309 regs</li>
+        <li><code>/de/ki-sichtbarkeit-tools.html</code> — 2,193</li>
+        <li><code>/ai-mode-tracker.html</code> — 1,954 · 60 regs</li>
+        <li><code>/perplexity-visibility-tracker.html</code> — 1,327 · 16 regs (1.2%)</li>
+        <li><code>/gemini-visibility-tracker.html</code> — 1,176 · 13 regs (1.1%)</li>
+        <li><code>/answer-engine-optimization-tool.html</code> — 1,119 · 76 regs</li>
+        <li><em>+ 12 more (DE, ES, FR, NL, JP variants)</em></li>
+      </ul></details>
+    </div>
+
+    <!-- G7 -->
+    <div class="plan-group high">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G7 · EN homepage</div>
+          <div class="plan-group-title">Rework EN homepage hero + CTAs (drives 34% of all portfolio traffic)</div>
+        </div>
+        <span class="plan-pill high">High</span>
+      </div>
+      <div class="plan-meta"><span>1 page</span><span>309,852 visitors / mo</span><span>Single largest leverage</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>Most important page in the portfolio (310k visitors, 27,770 regs, 458 paid). Issue isn't visibility — it's positioning and CTA routing. "All-in-one SEO platform" doesn't route Owners to sales; single signup CTA pushes every persona through the same door.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Outcome-based hero ("The SEO platform agencies switch to and stay") + ROI stats strip + "Migrate from Semrush/Ahrefs free" ribbon + split CTA ("Request demo" primary for A1, "Start free trial" secondary) + enterprise logo strip. Doubles as reference implementation for G4.</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;HomepageHeroV2 headline roiStats migrationRibbon splitCTA /&gt; + &lt;EnterpriseLogoStrip /&gt;</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>0.15% → 0.25% paid rate on 310k visitors = +310 paid/month. Even small relative lifts dwarf nearly every other single page's maximum upside.</div>
+      <details class="plan-pages"><summary>Affected page</summary><ul>
+        <li><code>/</code> — 309,852 visitors · 27,770 regs · 458 paid (12.7% reg, 0.15% paid)</li>
+      </ul></details>
+    </div>
+
+    <!-- G8 -->
+    <div class="plan-group medium">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G8 · API cross-linking</div>
+          <div class="plan-group-title">Surface API value on 27 high-traffic non-API pages</div>
+        </div>
+        <span class="plan-pill medium">Medium</span>
+      </div>
+      <div class="plan-meta"><span>27 source pages</span><span>22 API pages</span><span>Internal linking project</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>22 API pages exist but receive modest traffic (/api.html: 9,603 visitors → 2 paid). Meanwhile 27 non-API pages flagged api=Yes have API-relevant content but barely link to API docs. Internal linking + block insertion problem, not new pages.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Build "Available via API" inline component, embed on all 27 api=Yes pages. Restructure /api.html: 3-tab code samples (cURL/Python/JS) above the fold + API credits/pricing per tier + "Switching from DataForSEO/Semrush API?" comparison + "Get API key" CTA. Localize core API pages (ES, FR, DE, JP, RU thin).</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;AvailableViaAPI endpoint codeSample /&gt; on feature pages + &lt;APIHeroV2 codeTabs pricingTable /&gt; on /api.html</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Cross-linking expected to multiply qualified API-intent traffic by 3–5×, expanding API-tier sales (typically the highest-LTV tier). See Section 4 for the dedicated page list.</div>
+    </div>
+
+    <!-- G9 -->
+    <div class="plan-group medium">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G9 · Cluster cleanup</div>
+          <div class="plan-group-title">Retire or reframe the 'easy-to-use' PPC cluster</div>
+        </div>
+        <span class="plan-pill medium">Medium</span>
+      </div>
+      <div class="plan-meta"><span>13 pages</span><span>91k visitors</span><span>Only 28 paid</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>91k visitors / 7,582 regs / 28 paid — strong signal of low-intent traffic that doesn't convert to revenue. Anti-upmarket positioning: A1 Owners want power/ROI, A3 Pros want depth — not "easy". 5 locale variants have &lt;100 regs and are pure retire candidates.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Two-track: (1) RETIRE 5 zombie locales — 301-redirect to localized homepage. (2) REFRAME the top 8 to outcome-led ("Powerful SEO, without the Semrush learning curve"), keep as PPC LPs but add A1 ROI block + A3 feature-depth proof + split CTA.</div>
+      <div class="plan-row block-row"><span class="lbl">Action</span><span class="val">&lt;OutcomeLedPPCTemplate a1ROI a3FeatureDepth splitCTA /&gt; + 5× 301 redirects</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Protects PPC reg volume on top pages while cutting maintenance cost of zombie pages. Reframing improves paid rate from current pathological ~0.03%.</div>
+      <details class="plan-pages"><summary>Retire / Reframe breakdown</summary><ul>
+        <li><strong>RETIRE:</strong> <code>/nl/easy-to-use.html</code> · <code>/nl/ac/easy-to-use.html</code> · <code>/it/easy-to-use.html</code> · <code>/pt/easy-to-use.html</code> · <code>/jp/easy-to-use.html</code></li>
+        <li><strong>REFRAME:</strong> <code>/easy-to-use.html</code> (37k) · <code>/ac/easy-to-use.html</code> (24k) · <code>/fr/easy-to-use.html</code> (7.5k) · <code>/de/easy-to-use.html</code> (5k) · <code>/de/ac/easy-to-use.html</code> (5k) · <code>/fr/ac/easy-to-use.html</code> · <code>/es/ac/easy-to-use.html</code> · <code>/es/easy-to-use.html</code></li>
+      </ul></details>
+    </div>
+
+    <!-- G10 -->
+    <div class="plan-group medium">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G10 · Free tools</div>
+          <div class="plan-group-title">Add standardized upsell rail to all Free Tool pages</div>
+        </div>
+        <span class="plan-pill medium">Medium</span>
+      </div>
+      <div class="plan-meta"><span>10 pages</span><span>~20k visitors / mo</span><span>Zero paid</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>10 free-tool pages drive ~20k monthly visitors with ZERO paid conversions across the entire cluster. Captures top-of-funnel SEO Pro traffic perfectly but has no upgrade path, no retargeting hook. Systemic funnel leak.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>One reusable Upsell Rail: (1) persistent top bar — "Unlock full report — 14-day free trial · See 100 keywords instead of 5"; (2) contextual in-result upsell — "Want this tracked daily? Start a project"; (3) agency angle. Plus: tool-user pixel events for retargeting.</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">&lt;FreeToolUpsellRail topBar contextualUpsell agencyCallout /&gt; + tool-user pixel</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>0.2% paid rate on 20k monthly free-tool visitors = +40 paid/month that currently don't exist. Retargeting audience arguably more valuable than direct conversion.</div>
+    </div>
+
+    <!-- G11 -->
+    <div class="plan-group medium">
+      <div class="plan-group-head">
+        <div>
+          <div class="plan-group-id">G11 · Localization parity</div>
+          <div class="plan-group-title">Close 'localized page thinness' gap for top non-EN traffic pages</div>
+        </div>
+        <span class="plan-pill medium">Medium</span>
+      </div>
+      <div class="plan-meta"><span>~25 priority pages</span><span>~120 affected total</span><span>Process change</span></div>
+      <div class="plan-row"><span class="lbl">Why it matters</span>Localized feature/AI/API/competitor/solution pages are repeatedly flagged as "thinner than EN equivalent" — copy translated but UI, methodology, case studies, FAQs missing or English-only. Affects ~120 non-EN pages but traffic concentrates in ~25 top pages.</div>
+      <div class="plan-row"><span class="lbl">Recommended action</span>Standardize a "Localization Parity Checklist" (UI screenshot localized · methodology localized · 1 regional case study · local-language FAQ · currency/VAT) and apply to top 25 non-EN by traffic. Integrate into CMS so future locale drops are complete from day 1.</div>
+      <div class="plan-row block-row"><span class="lbl">Block to add</span><span class="val">Localization Completeness checklist (CMS-enforced) + localized component variants</span></div>
+      <div class="plan-row"><span class="lbl">Expected impact</span>Many localized pages already have strong reg rates despite thinness (PT 18.9%, ES 22.5%). Bringing the thin middle (DE, JP, IT, NL) to parity disproportionately improves paid conversion.</div>
+    </div>
+
+  </div>
+
+  <!-- API expansion -->
+  <div class="plan-h3">4 · API content expansion — dedicated page list</div>
+  <p class="plan-lede" style="margin-bottom:10px;">Pages flagged <code>api=Yes</code> in the audit but currently lacking visible API content. Each receives an "Available via API" block + link to relevant API endpoint page. Ordered by traffic.</p>
+  <div class="plan-table-wrap">
+    <table class="plan-table">
+      <thead><tr><th>URL / Slug</th><th>Page type</th><th>Locale</th><th class="num">Visitors / mo</th><th>Recommended block</th></tr></thead>
+      <tbody>
+        <tr><td><code>/</code></td><td>Homepage</td><td>EN</td><td class="num">309,852</td><td>"Also available via API" strip → /api.html</td></tr>
+        <tr><td><code>/subscription.html</code></td><td>Pricing</td><td>EN</td><td class="num">76,655</td><td>"API access per tier" row in comparison</td></tr>
+        <tr><td><code>/backlink-checker.html</code></td><td>Feature</td><td>EN</td><td class="num">31,911</td><td>Code snippet → /backlinks-api.html</td></tr>
+        <tr><td><code>/es/</code></td><td>Homepage</td><td>ES</td><td class="num">27,704</td><td>API strip → /es/api.html</td></tr>
+        <tr><td><code>/fr/</code></td><td>Homepage</td><td>FR</td><td class="num">20,195</td><td>API strip → /fr/api.html</td></tr>
+        <tr><td><code>/de/</code></td><td>Homepage</td><td>DE</td><td class="num">13,766</td><td>API strip → /de/api.html</td></tr>
+        <tr><td><code>/position-tracking.html</code></td><td>Feature</td><td>EN</td><td class="num">12,560</td><td>"Programmatic rank tracking — API" block</td></tr>
+        <tr><td><code>/google-ranking-checker.html</code></td><td>Free tool</td><td>EN</td><td class="num">10,035</td><td>"Automate this at scale — API" block</td></tr>
+        <tr><td><code>/ru/</code></td><td>Homepage</td><td>RU</td><td class="num">8,192</td><td>API strip → /ru/api.html</td></tr>
+        <tr><td><code>/nl/</code></td><td>Homepage</td><td>NL</td><td class="num">7,736</td><td>API strip → /nl/api.html (new)</td></tr>
+        <tr><td><code>/de/subscription.html</code></td><td>Pricing</td><td>DE</td><td class="num">7,190</td><td>"API access per tier" row (localized)</td></tr>
+        <tr><td><code>/es/subscription.html</code></td><td>Pricing</td><td>ES</td><td class="num">7,177</td><td>"API access per tier" row (localized)</td></tr>
+        <tr><td><code>/fr/subscription.html</code></td><td>Pricing</td><td>FR</td><td class="num">6,790</td><td>"API access per tier" row (localized)</td></tr>
+        <tr><td><code>/de/ranking-check.html</code></td><td>Feature</td><td>DE</td><td class="num">6,085</td><td>Localized API code snippet block</td></tr>
+        <tr><td><code>/pt/</code></td><td>Homepage</td><td>PT</td><td class="num">6,023</td><td>API strip + localize /pt/api.html (new)</td></tr>
+        <tr><td><code>/jp/</code></td><td>Homepage</td><td>JP</td><td class="num">4,306</td><td>API strip → /jp/api.html</td></tr>
+        <tr><td><code>/de/keyword-recherche.html</code></td><td>Feature</td><td>DE</td><td class="num">4,177</td><td>Link to /de/keyword-recherche-api.html</td></tr>
+        <tr><td><code>/ua/</code></td><td>Homepage</td><td>UA</td><td class="num">3,899</td><td>API strip + localize API page (new)</td></tr>
+        <tr><td><code>/it/</code></td><td>Homepage</td><td>IT</td><td class="num">3,879</td><td>API strip + localize /it/api.html (new)</td></tr>
+        <tr><td><code>/fr/keyword-suggestion-tool.html</code></td><td>Feature</td><td>FR</td><td class="num">3,789</td><td>Localized API code snippet block</td></tr>
+        <tr><td><code>/es/position-tracking.html</code></td><td>Feature</td><td>ES</td><td class="num">2,842</td><td>Localized API snippet block</td></tr>
+        <tr><td><code>/nl/subscription.html</code></td><td>Pricing</td><td>NL</td><td class="num">2,370</td><td>"API access per tier" row (localized)</td></tr>
+        <tr><td><code>/pt/subscription.html</code></td><td>Pricing</td><td>PT</td><td class="num">1,528</td><td>"API access per tier" row (localized)</td></tr>
+        <tr><td><code>/ru/podpiska.html</code></td><td>Pricing</td><td>RU</td><td class="num">1,249</td><td>"API access per tier" row (localized)</td></tr>
+        <tr><td><code>/ua/subscription.html</code></td><td>Pricing</td><td>UA</td><td class="num">892</td><td>"API access per tier" row (localized)</td></tr>
+        <tr><td><code>/jp/subscription.html</code></td><td>Pricing</td><td>JP</td><td class="num">890</td><td>"API access per tier" row (localized)</td></tr>
+        <tr><td><code>/it/subscription.html</code></td><td>Pricing</td><td>IT</td><td class="num">808</td><td>"API access per tier" row (localized)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Quick wins / Strategic -->
+  <div class="plan-h3">5 · Quick wins vs strategic tasks</div>
+  <div class="plan-twocol">
+    <div class="plan-list-card quick">
+      <h3>⚡ Quick wins (weeks 1–3)</h3>
+      <ul>
+        <li><strong>301-redirect 5 zombie "easy-to-use" locales</strong> — NL, NL/AC, IT, PT, JP. ~1h dev. Reclaims crawl + link equity.</li>
+        <li><strong>Replace EN homepage hero copy</strong> — outcome-led headline + split signup CTA. Copy-only change on the biggest page.</li>
+        <li><strong>Add "Switch from Semrush/Ahrefs free" ribbon</strong> to all 10 homepages. Single component, 10 placements.</li>
+        <li><strong>Retitle competitor pages</strong> with use-case headlines. Copy-only — captures immediate SERP CTR gains.</li>
+        <li><strong>Add "Most popular for Agencies" badge</strong> on /subscription.html Teams tier. One-line CMS change.</li>
+        <li><strong>Add "Unlock full report" top bar</strong> on /google-ranking-checker.html and /seo-checker.html. First proof of G10.</li>
+        <li><strong>Make Enterprise page demo-only</strong> — hide free-trial CTA on /se-ranking-for-enterprises.html.</li>
+        <li><strong>Instrument tool-user pixel</strong> on all 10 free-tool pages. Unlocks high-intent retargeting audience.</li>
+        <li><strong>Add API strip + link</strong> on 10 homepages and /subscription.html. ~11 placements, unblocks API traffic flow.</li>
+      </ul>
+    </div>
+    <div class="plan-list-card strategic">
+      <h3>🏗 Strategic tasks (weeks 3–12+)</h3>
+      <ul>
+        <li><strong>Build the 6-block component library</strong> — ProductUIStrip, ROI Strip, Migration Banner, Comparison Matrix, Methodology Box, Role-Split CTA. Underpins G1, G2, G3, G5, G6, G7.</li>
+        <li><strong>Commission 3–5 named case studies per persona</strong> — Agency / SMB / Enterprise with named logos and quantified outcomes. Longest content lead time. Unblocks G5 + G7.</li>
+        <li><strong>Build the Semrush → SE Ranking migration toolkit</strong> — guide + free data-import tool + 7-day consultation CTA. Unblocks G3.</li>
+        <li><strong>Rework /api.html into endpoint-first hub</strong> — code samples, pricing per tier, endpoint catalog, comparison vs DataForSEO. Underpins G8.</li>
+        <li><strong>Localization parity program</strong> — CMS checklist + backfill top 25 non-EN pages. Underpins G11.</li>
+        <li><strong>Enterprise page rebuild</strong> — remove self-serve, expose SSO/SAML/SLA, named logo strip, sole demo CTA.</li>
+        <li><strong>AI methodology documentation</strong> — publish methodology (LLMs · frequency · accuracy) as reusable Methodology Box. Highest-leverage AI-page fix.</li>
+        <li><strong>Free-tool retargeting program</strong> — ad creative, audiences, dedicated trial LP. Unlocks the hidden value of G10.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Success metrics -->
+  <div class="plan-h3">6 · Success metrics (90-day targets)</div>
+  <div class="plan-table-wrap plan-metrics-table">
+    <table class="plan-table">
+      <thead><tr><th>Metric</th><th>Baseline</th><th>90-day target</th><th>Owner</th></tr></thead>
+      <tbody>
+        <tr><td>Portfolio paid conversions / month</td><td>1,181</td><td><strong>1,600 (+35%)</strong></td><td>Head of Growth</td></tr>
+        <tr><td>Pricing-page paid rate (blended)</td><td>0.42%</td><td><strong>0.65%</strong></td><td>Pricing PM</td></tr>
+        <tr><td>Competitor-page SQL rate</td><td>~0.05% → sales</td><td><strong>1.0% → sales</strong></td><td>Sales + SEO</td></tr>
+        <tr><td>Agency page paid conversions / month</td><td>2</td><td><strong>8</strong></td><td>Agency segment PM</td></tr>
+        <tr><td>AI-feature reg rate (ChatGPT / Gemini / Perplexity)</td><td>~1.2%</td><td><strong>3.5%</strong></td><td>AI feature PM</td></tr>
+        <tr><td>Free-tool → paid conversion</td><td>0 (across 10 pages)</td><td><strong>40 / mo</strong></td><td>Lifecycle marketing</td></tr>
+        <tr><td>Localized-homepage reg rate (DE / JP / IT)</td><td>2.8% – 4.9%</td><td><strong>&gt;8%</strong></td><td>Localization</td></tr>
+        <tr><td>Pages with product UI visible</td><td>10 / 236 (4%)</td><td><strong>&gt;150 / 236 (&gt;63%)</strong></td><td>Design ops</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="plan-lede" style="margin-top:22px; margin-bottom:0; font-size:12px;">Source: data above is the same dataset rendered in the dashboard's filtered queue. All bulk-action groups can be re-derived by filtering the table by Page type / Priority / Locale.</p>
+</section>
+
   </div>
 
 <script>
@@ -657,6 +1306,33 @@
     }
     init();
 
+    // Floating "Jump to Action Plan" button — appears after user scrolls past the first screen
+    (function() {
+      const btn = document.getElementById('float-jump');
+      if (!btn) return;
+      const planSection = document.getElementById('action-plan');
+      let ticking = false;
+      function update() {
+        const scrolled = window.scrollY || window.pageYOffset;
+        const planTop = planSection ? planSection.getBoundingClientRect().top + window.scrollY : Infinity;
+        // Show after scrolling past 1 viewport, hide once user reaches the action plan itself
+        const shouldShow = scrolled > window.innerHeight * 0.6 && scrolled < (planTop - 100);
+        btn.classList.toggle('visible', shouldShow);
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+      update();
+    })();
+
 </script>
+<a href="#action-plan" id="float-jump" class="float-jump" aria-label="Jump to Action Plan">
+  <span class="icon">↓</span>
+  <span class="label-full">Action Plan</span>
+</a>
 </body>
 </html>
